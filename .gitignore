@@ -36,3 +36,4 @@ local.properties
 .factorypath
 .buildpath
 .target
+/build/

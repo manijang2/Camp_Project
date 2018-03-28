@@ -25,10 +25,6 @@
 					<!-- 메인 상품 리스트 -->
 					<table class="product_main">
 						<tr>
-							<%
-								ArrayList<ProductDto> list = (ArrayList) productDao.productAll();
-							%>
-							<c:set value="<%=list%>" var="list" />
 							<c:forEach var="l" items="${list}" varStatus="status">
 								<td>
 									<figure class="snip1384"> <img src="/Camp_Project/image/product/${l.p_image1}" /> <figcaption>

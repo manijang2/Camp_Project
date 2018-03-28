@@ -19,9 +19,13 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 		System.out.println("command : " + command);
 
 		if (command.equals("/main.do")) {
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("/main/main.jsp");
+			
+			action = new MainAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 
 		if (forward != null) {

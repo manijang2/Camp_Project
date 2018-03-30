@@ -26,7 +26,7 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			
+
 			//product 컨트롤러 start
 		}  else if (command.equals("/product/p_read.do")) {
 			//상품 상세보기 페이지
@@ -60,6 +60,12 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("/product/p_cate2.jsp");
+
+		} else if(command.equals("/admin/main.do")) {
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/admin/admin_main.jsp");
+
 		}
 
 		if (forward != null) {

@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+
+#topMenu {
+	width: 82%;
+	background-color: white;
+}
+
+#topMenu ul li {
+	display: inline-block;
+}
+
+#topMenu a {
+	color: #111111;
+	display: block;
+	text-decoration: none;
+	padding: 10px 10px;
+}
+
+#topMenu a:hover {
+	background: #E65540;
+}
+
+.menu-trigger {
+	display: none;
+	color: black;
+}
+
+@media screen and (max-width:200px) {
+	.menu-trigger {
+		display: block;
+	}
+	#topMenu ul li {
+		display: block;
+		border-top: 1px #0f0f0e solid;
+	}
+	#topMenu ul {
+		display: none;
+	}
+}

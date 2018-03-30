@@ -11,8 +11,11 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String RequestURI = request.getRequestURI();
+		System.out.println(RequestURI);
 		String contextPath = request.getContextPath();
+		System.out.println(contextPath);
 		String command = RequestURI.substring(contextPath.length());
+		System.out.println(command);
 		ActionForward forward = null;
 		Action action = null;
 
@@ -28,7 +31,7 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			}
 
 			//product 컨트롤러 start
-		}  else if (command.equals("/product/p_read.do")) {
+		}  else if (command.equals("/p_read.do")) {
 			//상품 상세보기 페이지
 			action = new ProductController();
 			try {

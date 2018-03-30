@@ -1,0 +1,60 @@
+@CHARSET "UTF-8";
+
+th, tr, td{
+	height : 30px ;
+	text-align: center;
+	vertical-align: middle;
+}
+
+/* 전체 틀 레이아웃 설정 */
+
+.div { width: 1200px; text-align: center;margin: auto;align: center; }
+
+.innerdiv{ width: 600px;text-align: center;margin: auto;align: center; }
+
+.innerdiv2{ width: 800px;text-align: center;}
+
+.innerdiv3{ width: 400px;text-align: center;margin: auto;align: center; }
+
+table {
+	width: 100%;
+	border-style: none;
+	border: 0px;
+	border-spacing: 0px;
+	padding: auto;
+	margin: auto;
+}
+
+table.member_table {
+	width: 600px;
+}
+table.reg_table {
+	width: 800px;
+}
+table.login_table {
+	width: 400px;
+}
+
+/* 회원리스트 */
+.th1, .td1 { width: 30px; text-align: center; }
+.th2, .td2 { text-align: center; }
+.th3, .td3 { width: 150px; text-align: center; }
+.th4, .td4 { width: 100px; text-align: center; }
+.th5, .td5 { width: 200px; text-align: center; }
+
+/* 회원가입 */
+.th6, .td6 { width: 150px; text-align: center;}
+.th7, .td7 { text-align: left;  width: 200px;}
+.td8 { text-align: left;}
+
+.left { text-align: left; }
+.center { text-align: center; }
+.px200 { width:200px;}
+.px800 { width:800px;}
+
+.input-sm { width: 200px;}
+
+input{ background-color:#fff}
+#order { font-size: 50px; }
+
+/* 전체 틀 레이아웃 설정  끝 */

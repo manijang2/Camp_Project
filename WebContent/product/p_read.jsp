@@ -1,17 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import="product.db.ProductDto" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <jsp:useBean id="productDao" class="product.db.ProductDao" />
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<%@include file="/main/inc/main_top.inc" %>
 <%
-String memid = (String)session.getAttribute("idKey");
+//String memid = (String)session.getAttribute("idKey");
 String adkey = (String)session.getAttribute("gradeKey");
 
 int code = Integer.parseInt(request.getParameter("p_code"));
 ProductDto dto = productDao.selectProductData(code);
 %>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,7 +25,7 @@ ProductDto dto = productDao.selectProductData(code);
 
 </head>
 <body>
-<c:import url="../main/inc/top.inc" />
+
 
 <c:set value="<%=dto %>" var="list"/>
 <br><br><br>
@@ -132,7 +134,7 @@ ProductDto dto = productDao.selectProductData(code);
 		<div id="showProduct">	
 		</div>
 </div>
-<%@include file="../main/inc/bottom.inc"%>
+<%@include file="/main/inc/main_bottom.inc"%>
 
 </body>
 </html>

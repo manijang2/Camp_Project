@@ -36,7 +36,7 @@
 										<p>브랜드 : ${l.p_brand}</p>
 									</c:if> <c:if test="${! empty l.p_origin}">
 										<p>원산지 : ${l.p_origin}</p>
-									</c:if> </figcaption> <a href="../product/p_read.jsp?p_code=${l.p_code}"></a> </figure>
+									</c:if> </figcaption> <a href="/Camp_Project/p_read.do?p_code=${l.p_code}"></a> </figure>
 								</td>
 								<c:if test="${status.count%4=='0'}">
 						</tr>

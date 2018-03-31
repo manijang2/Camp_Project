@@ -51,7 +51,7 @@ ProductDto dto = productDao.selectProductData(code);
 <!-- 상품 상단정보 시작 -->
 <table class="product_main">
 	<tr>
-		<td width="50%"><img src="image/${list.p_image1}" width="500"> 
+		<td width="50%"><img src="/Camp_Project/image/product/${list.p_image1}" width="500"> 
 		</td>
 		<td>
 			<table class="table table-striped table-hover">

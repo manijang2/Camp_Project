@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<%@include file="../main/inc/top.inc"%>
+<%@include file="/main/inc/main_top.inc" %>
 <div class="div">
 
  	<br><br>
@@ -29,7 +29,7 @@
 	<c:forEach var="l" items="${list}" varStatus="status">
 		<td>
 			<figure class="snip1384">
-				  <img src="image/${l.p_image1}"/>
+				  <img src="/Camp_Project/image/product/${l.p_image1}"/>
 				  <figcaption>
 				    <h3>${l.p_name}</h3>
 				    <p><fmt:formatNumber value="${l.p_price}" type="currency" /></p><br>
@@ -40,7 +40,7 @@
 							<p>원산지 : ${l.p_origin}</p>
 					</c:if>
 				  </figcaption>
-				  <a href="p_read.jsp?p_code=${l.p_code}"></a>
+				  <a href="/Camp_Project/p_read.do?p_code=${l.p_code}"></a>
 			</figure>
 		</td>
 	 <c:if test="${status.count%4=='0'}">
@@ -52,7 +52,7 @@
 <br><Br><br>
 
 </div>
-<%@include file="../main/inc/bottom.inc"%>
+<%@include file="/main/inc/main_bottom.inc"%>
 
 </body>
 </html>

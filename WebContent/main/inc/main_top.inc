@@ -99,55 +99,55 @@ function searchData(p_name){
 			<ul class="nav navbar-nav">
 				<li class="dropdown"><a class="dropdown-toggle" role="button" aria-expanded="true" href="#" data-toggle="dropdown"> >> 전체 카테고리 << <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="/Camp_Project/p_cate1.do?ct_name1=<%=m[0]%>"><%=m[0]%></a>
+						<li><a href="/web_project/product/p_cate1.jsp?ct_name1=<%=m[0]%>"><%=m[0]%></a>
 							<ul>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[0]%>&ct_name2=<%=m1[0]%>"><%=m1[0]%></a></li>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[0]%>&ct_name2=<%=m1[1]%>"><%=m1[1]%></a></li>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[0]%>&ct_name2=<%=m1[2]%>"><%=m1[2]%></a></li>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[0]%>&ct_name2=<%=m1[3]%>"><%=m1[3]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[0]%>&ct_name2=<%=m1[0]%>"><%=m1[0]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[0]%>&ct_name2=<%=m1[1]%>"><%=m1[1]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[0]%>&ct_name2=<%=m1[2]%>"><%=m1[2]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[0]%>&ct_name2=<%=m1[3]%>"><%=m1[3]%></a></li>
 							</ul></li>
 						<li class="divider"></li>
-						<li><a href="/Camp_Project/p_cate1.do?ct_name1=<%=m[1]%>"><%=m[1]%></a>
+						<li><a href="/web_project/product/p_cate1.jsp?ct_name1=<%=m[1]%>"><%=m[1]%></a>
 							<ul>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[1]%>&ct_name2=<%=m2[0]%>"><%=m2[0]%></a></li>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[1]%>&ct_name2=<%=m2[1]%>"><%=m2[1]%></a></li>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[1]%>&ct_name2=<%=m2[2]%>"><%=m2[2]%></a></li>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[1]%>&ct_name2=<%=m2[3]%>"><%=m2[3]%></a></li>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[1]%>&ct_name2=<%=m2[4]%>"><%=m2[4]%></a></li>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[1]%>&ct_name2=<%=m2[5]%>"><%=m2[5]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[1]%>&ct_name2=<%=m2[0]%>"><%=m2[0]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[1]%>&ct_name2=<%=m2[1]%>"><%=m2[1]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[1]%>&ct_name2=<%=m2[2]%>"><%=m2[2]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[1]%>&ct_name2=<%=m2[3]%>"><%=m2[3]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[1]%>&ct_name2=<%=m2[4]%>"><%=m2[4]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[1]%>&ct_name2=<%=m2[5]%>"><%=m2[5]%></a></li>
 							</ul></li>
 						<li class="divider"></li>
 
-						<li><a href="/Camp_Project/p_cate1.do?ct_name1=<%=m[2]%>"><%=m[2]%></a>
+						<li><a href="/web_project/product/p_cate1.jsp?ct_name1=<%=m[2]%>"><%=m[2]%></a>
 							<ul>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[2]%>&ct_name2=<%=m3[0]%>"><%=m3[0]%></a></li>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[2]%>&ct_name2=<%=m3[1]%>"><%=m3[1]%></a></li>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[2]%>&ct_name2=<%=m3[2]%>"><%=m3[2]%></a></li>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[2]%>&ct_name2=<%=m3[3]%>"><%=m3[3]%></a></li>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[2]%>&ct_name2=<%=m3[4]%>"><%=m3[4]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[2]%>&ct_name2=<%=m3[0]%>"><%=m3[0]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[2]%>&ct_name2=<%=m3[1]%>"><%=m3[1]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[2]%>&ct_name2=<%=m3[2]%>"><%=m3[2]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[2]%>&ct_name2=<%=m3[3]%>"><%=m3[3]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[2]%>&ct_name2=<%=m3[4]%>"><%=m3[4]%></a></li>
 							</ul></li>
 
 						<li class="divider"></li>
 
-						<li><a href="/Camp_Project/p_cate1.do?ct_name1=<%=m[3]%>"><%=m[3]%></a>
+						<li><a href="/web_project/product/p_cate1.jsp?ct_name1=<%=m[3]%>"><%=m[3]%></a>
 							<ul>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[3]%>&ct_name2=<%=m4[0]%>"><%=m4[0]%></a></li>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[3]%>&ct_name2=<%=m4[1]%>"><%=m4[1]%></a></li>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[3]%>&ct_name2=<%=m4[2]%>"><%=m4[2]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[3]%>&ct_name2=<%=m4[0]%>"><%=m4[0]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[3]%>&ct_name2=<%=m4[1]%>"><%=m4[1]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[3]%>&ct_name2=<%=m4[2]%>"><%=m4[2]%></a></li>
 							</ul></li>
 						<li class="divider"></li>
-						<li><a href="/Camp_Project/p_cate1.do?ct_name1=<%=m[4]%>"><%=m[4]%></a>
+						<li><a href="/web_project/product/p_cate1.jsp?ct_name1=<%=m[4]%>"><%=m[4]%></a>
 							<ul>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[4]%>&ct_name2=<%=m5[0]%>"><%=m5[0]%></a></li>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[4]%>&ct_name2=<%=m5[1]%>"><%=m5[1]%></a></li>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[4]%>&ct_name2=<%=m5[2]%>"><%=m5[2]%></a></li>
-								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[4]%>&ct_name2=<%=m5[3]%>"><%=m5[3]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[4]%>&ct_name2=<%=m5[0]%>"><%=m5[0]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[4]%>&ct_name2=<%=m5[1]%>"><%=m5[1]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[4]%>&ct_name2=<%=m5[2]%>"><%=m5[2]%></a></li>
+								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[4]%>&ct_name2=<%=m5[3]%>"><%=m5[3]%></a></li>
 							</ul></li>
 					</ul></li>
-				<li><a href="/Camp_Project/p_bestlist.do">best</a></li>
-				<li><a href="/Camp_Project/p_newlist.do">신상품</a></li>
+				<li><a href="/web_project/product/p_bestlist.jsp">best</a></li>
+				<li><a href="/web_project/product/p_newlist.jsp">신상품</a></li>
 				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li><a href="/Camp_Project/boardnoticelist.jsp">공지사항</a></li>
+				<li><a href="/web_project/notice/boardnoticelist.jsp">공지사항</a></li>
 				<li><a href="/web_project/board/BoardQna.jsp">Q & A</a></li>
 				<li><a href="/web_project/board/reviewList.jsp">상품후기</a></li>
 			</ul>

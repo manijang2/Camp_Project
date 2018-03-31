@@ -40,25 +40,25 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 				e.printStackTrace();
 			}
 			
-		} else if (command.equals("/product/p_bestlist.do")) {
+		} else if (command.equals("/p_bestlist.do")) {
 			//베트스 상품 모음전
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("/product/p_bestlist.jsp");
 			
-		} else if (command.equals("/product/p_newlist.do")) {
+		} else if (command.equals("/p_newlist.do")) {
 			//신상품 모음전
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("/product/p_newlist.jsp");
 			
-		}  else if (command.equals("/product/p_cate1.do")) {
+		}  else if (command.equals("/p_cate1.do")) {
 			//상품 카테고리 1
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("/product/p_cate1.jsp");
 			
-		}  else if (command.equals("/product/p_cate2.do")) {
+		}  else if (command.equals("/p_cate2.do")) {
 			//상품 카테고리 2
 			forward = new ActionForward();
 			forward.setRedirect(false);

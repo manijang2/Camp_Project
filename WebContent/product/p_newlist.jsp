@@ -10,8 +10,8 @@
 <head>
 <meta content="text/html; charset=UTF-8">
 <title>신상품 모음전</title>
-<script src="/web_project/js/script.js"></script>
-<link href="/web_project/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/Camp_Project/js/main_script.js"></script>
+<link href="/Camp_Project/css/main_style.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>

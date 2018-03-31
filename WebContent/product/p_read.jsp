@@ -19,24 +19,25 @@ ProductDto dto = productDao.selectProductData(code);
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>상품 상세정보 확인</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-<script src="../js/script_product.js"></script>
-<script src="../js/script.js"></script>
-<link href="../css/style.css" rel="stylesheet" type="text/css">
 
+
+<script type="text/javascript" src="/Camp_Project/js/script_product.js"></script>
+<script type="text/javascript" src="/Camp_Project/js/main_script.js"></script>
+<link href="/Camp_Project/css/main_style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 
 
-<c:set value="<%=dto %>" var="list"/>
+<c:set var="list" value="<%=dto %>"/>
 <br><br><br>
 <div class="leftdiv">
-<a href = "p_list.jsp">전체상품</a> > <a href="p_cate1.jsp?ct_name1=${list.ct_name1}">${list.ct_name1}</a> > 
+<a href = "/Camp_Project/p_list.do">전체상품</a> > <a href="/Camp_Project/p_cate1.do?ct_name1=${list.ct_name1}">${list.ct_name1}</a> > 
 <!-- 카테고리 2가 없을경우 하이드 -->
 <c:choose>
 	<c:when test="${empty list.ct_name2 }">
 	</c:when>
 	<c:otherwise>
-		<a href="p_cate2.jsp?ct_name1=${list.ct_name1 }&ct_name2=${list.ct_name2 }">${list.ct_name2 }</a>
+		<a href="/Camp_Project/p_cate2.do?ct_name1=${list.ct_name1 }&ct_name2=${list.ct_name2 }">${list.ct_name2 }</a>
 	</c:otherwise>
 </c:choose> 
 </div>
@@ -82,7 +83,7 @@ ProductDto dto = productDao.selectProductData(code);
 									<input type="text" name="quantity" value="1" size="3" style="text-align:center"> 
 									<input type="hidden" name="c_pcode" value="${list.p_code}">
 							    </td>
-						        <td width="20"><a href="JavaScript:CountChange('up');"><img src="../image/up.jpg" width="11" height="9" border="0"></a><br><a href="JavaScript:CountChange('down');"><img src="../image/dw.jpg" width="11" height="9" border="0"></a></td>
+						        <td width="20"><a href="JavaScript:CountChange('up');"><img src="/Camp_Project/image/up.jpg" width="11" height="9" border="0"></a><br><a href="JavaScript:CountChange('down');"><img src="/Camp_Project/image/dw.jpg" width="11" height="9" border="0"></a></td>
 						     </tr>
 						</table>
 					<!-- 상품 수량 체크부분끝 -->

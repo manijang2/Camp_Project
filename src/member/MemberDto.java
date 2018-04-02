@@ -1,6 +1,6 @@
 package member;
 import java.sql.*;
-import com.sun.jmx.snmp.Timestamp;
+import java.sql.Timestamp;
 
 
 public class MemberDto {

@@ -1,17 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <div class="div">
 	<table>
 		<tr>
 			<td class="align_Center">
-				<%@include file="/main/inc/main_bottom1.inc"%>
+				<%@include file="/member/inc/member_bottom1.inc"%>
 			</td>
 			<td class="align_Center">
-				<%@include file="/main/inc/main_bottom2.inc"%>
+				<%@include file="/member/inc/member_bottom2.inc"%>
 			</td>
 			<td class="align_Center">
-				<%@include file="/main/inc/main_bottom3.inc"%>
+				<%@include file="/member/inc/member_bottom3.inc"%>
 			</td>
 		</tr>
 	</table>

@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
 String memid = (String)session.getAttribute("idKey");
 String gradeKey = (String)session.getAttribute("gradeKey");
@@ -17,19 +18,19 @@ String m4[] = {"랜턴/조명","버너","난로"};
 String m5[] = {"그릴","화로대","오븐","소품"};
 
 if(memid == null){
-	log = "<a href='/web_project/member/member_login.jsp'>로그인</a>";
-	mem1 = "<a href='/web_project/member/member_register.jsp'>회원가입</a>";
+	log = "<a href='/Camp_Project/member/member_login.jsp'>로그인</a>";
+	mem1 = "<a href='/Camp_Project/member/member_register.jsp'>회원가입</a>";
 }else{
 	if(gradeKey != null && gradeKey.equals("admin")){
 		//admin 로그인 시 관리자 메뉴 보이기
 		log = "<a href='/web_project/member/member_logout.jsp'>로그아웃</a>";
 		mem1 = "<br><a href='/web_project/admin/admin_main.jsp'>&#9776;관리자 메뉴</a>";
 	}else{
-		log = "<a href='/web_project/member/member_logout.jsp'>로그아웃</a>";
-		mem2 = "<a href='/web_project/cart/cart.jsp'>장바구니</a>";
-		mem3 = "<a href='/web_project/order/order.jsp'>주문조회</a>";
+		log = "<a href='/Camp_Project/member/member_logout.jsp'>로그아웃</a>";
+		mem2 = "<a href='/Camp_Project/cart/cart.jsp'>장바구니</a>";
+		mem3 = "<a href='/Camp_Project/order/order.jsp'>주문조회</a>";
 		mem4 = "<a href='javascript:delevery()'>배송조회</a>";
-		mem1 = "<a href='/web_project/member/member_update.jsp?m_id="+memid+"'>회원정보 수정</a>";
+		mem1 = "<a href='/Camp_Project/member/member_update.jsp?m_id="+memid+"'>회원정보 수정</a>";
 	}
 }
 %>
@@ -98,55 +99,55 @@ function searchData(p_name){
 			<ul class="nav navbar-nav">
 				<li class="dropdown"><a class="dropdown-toggle" role="button" aria-expanded="true" href="#" data-toggle="dropdown"> >> 전체 카테고리 << <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a href="/web_project/product/p_cate1.jsp?ct_name1=<%=m[0]%>"><%=m[0]%></a>
+						<li><a href="/Camp_Project/p_cate1.do?ct_name1=<%=m[0]%>"><%=m[0]%></a>
 							<ul>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[0]%>&ct_name2=<%=m1[0]%>"><%=m1[0]%></a></li>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[0]%>&ct_name2=<%=m1[1]%>"><%=m1[1]%></a></li>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[0]%>&ct_name2=<%=m1[2]%>"><%=m1[2]%></a></li>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[0]%>&ct_name2=<%=m1[3]%>"><%=m1[3]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[0]%>&ct_name2=<%=m1[0]%>"><%=m1[0]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[0]%>&ct_name2=<%=m1[1]%>"><%=m1[1]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[0]%>&ct_name2=<%=m1[2]%>"><%=m1[2]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[0]%>&ct_name2=<%=m1[3]%>"><%=m1[3]%></a></li>
 							</ul></li>
 						<li class="divider"></li>
-						<li><a href="/web_project/product/p_cate1.jsp?ct_name1=<%=m[1]%>"><%=m[1]%></a>
+						<li><a href="/Camp_Project/p_cate1.do?ct_name1=<%=m[1]%>"><%=m[1]%></a>
 							<ul>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[1]%>&ct_name2=<%=m2[0]%>"><%=m2[0]%></a></li>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[1]%>&ct_name2=<%=m2[1]%>"><%=m2[1]%></a></li>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[1]%>&ct_name2=<%=m2[2]%>"><%=m2[2]%></a></li>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[1]%>&ct_name2=<%=m2[3]%>"><%=m2[3]%></a></li>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[1]%>&ct_name2=<%=m2[4]%>"><%=m2[4]%></a></li>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[1]%>&ct_name2=<%=m2[5]%>"><%=m2[5]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[1]%>&ct_name2=<%=m2[0]%>"><%=m2[0]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[1]%>&ct_name2=<%=m2[1]%>"><%=m2[1]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[1]%>&ct_name2=<%=m2[2]%>"><%=m2[2]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[1]%>&ct_name2=<%=m2[3]%>"><%=m2[3]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[1]%>&ct_name2=<%=m2[4]%>"><%=m2[4]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[1]%>&ct_name2=<%=m2[5]%>"><%=m2[5]%></a></li>
 							</ul></li>
 						<li class="divider"></li>
 
-						<li><a href="/web_project/product/p_cate1.jsp?ct_name1=<%=m[2]%>"><%=m[2]%></a>
+						<li><a href="/Camp_Project/p_cate1.do?ct_name1=<%=m[2]%>"><%=m[2]%></a>
 							<ul>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[2]%>&ct_name2=<%=m3[0]%>"><%=m3[0]%></a></li>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[2]%>&ct_name2=<%=m3[1]%>"><%=m3[1]%></a></li>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[2]%>&ct_name2=<%=m3[2]%>"><%=m3[2]%></a></li>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[2]%>&ct_name2=<%=m3[3]%>"><%=m3[3]%></a></li>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[2]%>&ct_name2=<%=m3[4]%>"><%=m3[4]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[2]%>&ct_name2=<%=m3[0]%>"><%=m3[0]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[2]%>&ct_name2=<%=m3[1]%>"><%=m3[1]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[2]%>&ct_name2=<%=m3[2]%>"><%=m3[2]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[2]%>&ct_name2=<%=m3[3]%>"><%=m3[3]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[2]%>&ct_name2=<%=m3[4]%>"><%=m3[4]%></a></li>
 							</ul></li>
 
 						<li class="divider"></li>
 
-						<li><a href="/web_project/product/p_cate1.jsp?ct_name1=<%=m[3]%>"><%=m[3]%></a>
+						<li><a href="/Camp_Project/p_cate1.do?ct_name1=<%=m[3]%>"><%=m[3]%></a>
 							<ul>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[3]%>&ct_name2=<%=m4[0]%>"><%=m4[0]%></a></li>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[3]%>&ct_name2=<%=m4[1]%>"><%=m4[1]%></a></li>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[3]%>&ct_name2=<%=m4[2]%>"><%=m4[2]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[3]%>&ct_name2=<%=m4[0]%>"><%=m4[0]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[3]%>&ct_name2=<%=m4[1]%>"><%=m4[1]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[3]%>&ct_name2=<%=m4[2]%>"><%=m4[2]%></a></li>
 							</ul></li>
 						<li class="divider"></li>
-						<li><a href="/web_project/product/p_cate1.jsp?ct_name1=<%=m[4]%>"><%=m[4]%></a>
+						<li><a href="/Camp_Project/p_cate1.do?ct_name1=<%=m[4]%>"><%=m[4]%></a>
 							<ul>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[4]%>&ct_name2=<%=m5[0]%>"><%=m5[0]%></a></li>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[4]%>&ct_name2=<%=m5[1]%>"><%=m5[1]%></a></li>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[4]%>&ct_name2=<%=m5[2]%>"><%=m5[2]%></a></li>
-								<li><a href="/web_project/product/p_cate2.jsp?ct_name1=<%=m[4]%>&ct_name2=<%=m5[3]%>"><%=m5[3]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[4]%>&ct_name2=<%=m5[0]%>"><%=m5[0]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[4]%>&ct_name2=<%=m5[1]%>"><%=m5[1]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[4]%>&ct_name2=<%=m5[2]%>"><%=m5[2]%></a></li>
+								<li><a href="/Camp_Project/p_cate2.do?ct_name1=<%=m[4]%>&ct_name2=<%=m5[3]%>"><%=m5[3]%></a></li>
 							</ul></li>
 					</ul></li>
-				<li><a href="/web_project/product/p_bestlist.jsp">best</a></li>
-				<li><a href="/web_project/product/p_newlist.jsp">신상품</a></li>
+				<li><a href="/Camp_Project/p_bestlist.do">best</a></li>
+				<li><a href="/Camp_Project/p_newlist.do">신상품</a></li>
 				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li><a href="/web_project/notice/boardnoticelist.jsp">공지사항</a></li>
+				<li><a href="/Camp_Project/boardnoticelist.jsp">공지사항</a></li>
 				<li><a href="/web_project/board/BoardQna.jsp">Q & A</a></li>
 				<li><a href="/web_project/board/reviewList.jsp">상품후기</a></li>
 			</ul>

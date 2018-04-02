@@ -14,9 +14,10 @@
 <link href="/Camp_Project/css/member_style.css" rel="stylesheet" type="text/css">
 
 <!--script 생성해서 여기 들어가야함 -->
-<!-- ★아직 include 안되었음★ -->
 </head>
 <body>
+	<%@include file="/member/inc/member_top.inc"%>
+
 
 <div class="div">
 <br><br>
@@ -55,6 +56,6 @@ onsubmit="">
 </div>
 <br><br>
 
-
+<!--  member_bottom 인식못함 -->
 </body>
 </html>

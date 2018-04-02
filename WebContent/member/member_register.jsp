@@ -16,6 +16,7 @@
 </head>
 
 <body>
+	<%@include file="/member/inc/member_top.inc"%>
 
 <!-- include 해줘야함 -->
 <div class="div">
@@ -112,6 +113,7 @@
 	<br> <br>
 <br>
 <br>
+<%@include file="/main/inc/main_bottom.inc" %>
 
 </body>
 </html>

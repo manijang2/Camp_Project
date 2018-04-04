@@ -18,26 +18,14 @@ import java.sql.Timestamp;
  */
 
 
-
 public class MemberDao {
 	
 	DataSource ds;
 	Connection con=null;
 	PreparedStatement pstmt = null;
 	ResultSet rs=null;
-	
-	//MemberDao 생성자
-	public MemberDao() {
-		try {
-			Context initCtx = new InitialContext();
-			Context envCtx = (Context)initCtx.lookup("java:comp/env");
-			DataSource ds = (DataSource)envCtx.lookup("java:comp/env/jdbc/MariaDB");
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
 		
-	}
-	
+		
 	public List<MemberDto> selectAll()throws SQLException{
 		String sql=null;
 		List<MemberDto> list = null;
@@ -218,17 +206,23 @@ public class MemberDao {
 	public boolean checkLogin(String id, String pw){
 		boolean isLoginChecked = false;
 		String sql=null;
+		System.out.println("id/pw : memberdao "+id + " "+ pw);
 		
 		try {
+			Context init = new InitialContext();
+			ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
 			con=ds.getConnection();
 			sql="select * from member where m_id=? ";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1,id);
 			rs=pstmt.executeQuery();
+			System.out.println(sql);
+
 			
 			if(rs.next()) {
-				String memberpw = rs.getString("m_pw");
-				
+				String memberpw = rs.getString("m_pwd");
+				System.out.println(memberpw);
+
 				if(memberpw.equals(pw)) {
 					isLoginChecked=true;
 				}

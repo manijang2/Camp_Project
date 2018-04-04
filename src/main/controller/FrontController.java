@@ -88,7 +88,15 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 		
 		/*------------------Member controller End------------------*/
 
-
+		//장바구니 추가
+		else if (command.equals("/cart_proc.do")) {
+			//베트스 상품 모음전
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/cart/cart_proc.jsp");
+		}
+		
+		
 		if (forward != null) {
 			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());

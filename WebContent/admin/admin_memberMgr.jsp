@@ -4,9 +4,9 @@
 <head>
 <meta content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link href="../css/css_admin.css" rel="stylesheet" type="text/css">
+<link href="/Camp_Project/css/admin_style.css" rel="stylesheet" type="text/css">
 <script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript" src="../js/script_admin.js"></script>
+<script type="text/javascript" src="/Camp_Project/js/admin_script.js"></script>
 </head>
 <body>
 <%@include file="inc/admin_menu.inc"%>  

@@ -10,8 +10,8 @@
 
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="admin_main.jsp">홈으로</a>
-  <a href="admin_memberMgr.jsp">회원관리</a>	
+  <a href="/Camp_Project/main.do">홈으로</a>
+  <a href="/Camp_Project/admin/memberMgr.do">회원관리</a>	
   		<a href="admin_memberReg.jsp" class="subMenu">회원등록</a> 
 		<a href="admin_memberMgr.jsp" class="subMenu">회원수정/삭제</a> 	
   <a href="admin_productMgr.jsp">상품관리</a>

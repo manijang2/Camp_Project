@@ -40,32 +40,32 @@
 					</tr>
 					<tr>
 						<th class="th6" style="vertical-align: middle;">패스워드 확인</th>
-						<td class="td7"><input type="text" name="m_pwd" size="15" value="user_pwd"  class="form-control input-sm" ></td>
+						<td class="td7"><input type="password" name="m_pwd" size="15" value="user_pwd"  class="form-control input-sm" ></td>
 						<td class="td8"></td>
 					</tr>
 					<tr>
 						<th class="th6" style="vertical-align: middle;">이름</th>
-						<td class="td7"><input type="text" name="m_name" size="15" value="user_name"  class="form-control input-sm" ></td>
+						<td class="td7"><input type="text" name="m_name" size="15" value=""  class="form-control input-sm" ></td>
 						<td class="td8"></td>
 					</tr>
 					<tr>
 						<th class="th6" style="vertical-align: middle;">이메일</th>
-						<td class="td7"><input type="text" name="m_email" size="27" value="user_email"  class="form-control input-sm" ></td>
+						<td class="td7"><input type="text" name="m_email" size="27" value=""  class="form-control input-sm" ></td>
 						<td class="td8"></td>
 					</tr>
 					<tr>
 						<th class="th6" style="vertical-align: middle;">전화번호</th>
-						<td class="td7"><input type="text" name="m_phone" size="20" value="010123456" onkeyup="javascript:editPhone(upForm)"  class="form-control input-sm" ></td>
+						<td class="td7"><input type="text" name="m_phone" size="20" value="" onkeyup="javascript:editPhone(upForm)"  class="form-control input-sm" ></td>
 						<td class="td8"></td>
 					</tr>
 					<tr>
 						<th class="th6" style="vertical-align: middle;">우편번호</th>
-						<td class="td7"><input type="text" name="m_zipcode" id="postcode" placeholder="우편번호" size="7" value="123456" readonly  class="form-control input-sm" ></td>
+						<td class="td7"><input type="text" name="m_zipcode" id="postcode" placeholder="우편번호" size="7" value="" readonly  class="form-control input-sm" ></td>
 						<td class="td8"><input type="button" value="우편번호찾기" id="btnZip" onclick="javascript:execDaumPostcode()" class="btn btn-default btn-sm"></td>
 					</tr>
 					<tr>
 						<th class="th6" style="vertical-align: middle;">주소</th>
-						<td class="td7" colspan="2"><input type="text" name="m_address" id="roadAddress" placeholder="우편번호 찾기를 눌러주세요" size="60" value="user_address"  class="form-control input-sm" >
+						<td class="td7" colspan="2"><input type="text" name="m_address" id="roadAddress" placeholder="우편번호 찾기를 눌러주세요" size="60" value=""  class="form-control input-sm" >
 							<span id="guide" style="color: #999"></span></td>
 					</tr>
 					<!-- 관리자만 회원 등급/마일리지 조정 가능

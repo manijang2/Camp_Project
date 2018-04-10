@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.Context;
@@ -28,15 +29,17 @@ public class MemberDao {
 		
 	public List<MemberDto> selectAll()throws SQLException{
 		String sql=null;
-		List<MemberDto> list = null;
+		List<MemberDto> list = new ArrayList<MemberDto>();
 		
 		try {
+			Context init = new InitialContext();
+			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
 			con=ds.getConnection();
 			sql="select * from member";
 			pstmt=con.prepareStatement(sql);
 			rs=pstmt.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				MemberDto member=new MemberDto();
 				member.setM_address(rs.getString("m_address"));
 				member.setM_date(rs.getTimestamp("m_date"));
@@ -48,6 +51,8 @@ public class MemberDao {
 				member.setM_phone(rs.getString("m_phone"));
 				member.setM_pwd(rs.getString("m_pwd"));
 				member.setM_zipcode(rs.getString("m_zipcode"));
+				
+				System.out.println(member);
 				
 				list.add(member);
 			}

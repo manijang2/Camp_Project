@@ -14,10 +14,10 @@
 	<DIV id="wowslider-container1">
 		<DIV class="ws_images">
 			<UL>
-				<LI><IMG id="wows1_0" src="/web_project/image/1.png"></LI>
-				<LI><IMG id="wows1_1" src="/web_project/image/2.png"></LI>
-				<LI><IMG id="wows1_2" src="/web_project/image/3.png"></LI>
-				<LI><IMG id="wows1_3" src="/web_project/image/4.png"></LI>
+				<LI><IMG id="wows1_0" src="/Camp_Project/image/banner/1.png"></LI>
+				<LI><IMG id="wows1_1" src="/Camp_Project/image/banner/2.png"></LI>
+				<LI><IMG id="wows1_2" src="/Camp_Project/image/banner/3.png"></LI>
+				<LI><IMG id="wows1_3" src="/Camp_Project/image/banner/4.png"></LI>
 			</UL>
 		</DIV>
 		<DIV class="ws_script" style="left: -99%; position: absolute;"></DIV>

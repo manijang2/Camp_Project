@@ -42,7 +42,7 @@
 	<c:forEach var="m" items="${list}">
 	<tr>
 		<td class="td1 align_Center"><input type="checkbox" name="check" value="${m.m_id}"/></td>
-		<td class="td2"><a href='../member/member_update.jsp?m_id=${m.m_id}'>${m.m_id}</a></td>
+		<td class="td2"><a href='/Camp_Project/admin/memberUpdate.do?m_id=${m.m_id}'>${m.m_id}</a></td>
 		<td class="td3">>${m.m_name}</td>
 		<td class="td4">
 			<c:choose>
@@ -55,7 +55,7 @@
 			</c:choose>
 		</td>
 		<td class="td5">
-			<input type="button" value="수정" onclick="javascript:location.href='../member/member_update.jsp?m_id=${m.m_id}'" class="btn btn-info btn-xs" /> / 
+			<input type="button" value="수정" onclick="javascript:location.href='/Camp_Project/admin/memberUpdate.do?m_id=${m.m_id}'" class="btn btn-info btn-xs" /> / 
 			<input type="button" value="삭제" onclick="javascript:confirmDeleteEach('${m.m_id}')" class="btn btn-danger btn-xs"/>
 		</td>	
 	</tr>	

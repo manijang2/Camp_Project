@@ -73,7 +73,7 @@ function searchData(p_name){
 		<table>
 			<tr>
 				<TD class="left">
-					<a href="/web_project/main/main.jsp"><img src="/web_project/image/route_logo.png"></a>
+					<a href="/web_project/main/main.jsp"><img src="/Camp_Project/image/route_logo.png"></a>
 				</TD>
 				<td class="right top" style="text-align: right;">
 					<div>

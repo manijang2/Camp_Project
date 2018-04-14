@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import admin.controller.MemberGetAction;
 import product.db.ProductDao;
 import product.db.ProductDto;
 
@@ -42,9 +43,13 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			forward.setRedirect(false);
 			forward.setPath("/admin/admin_memberMgr.jsp");
 		} else if(command.equals("/admin/memberUpdate.do")) {
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("/admin/admin_member_update.jsp");
+			action = new MemberGetAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else if (command.equals("/p_read.do")) {

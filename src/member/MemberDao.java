@@ -52,8 +52,6 @@ public class MemberDao {
 				member.setM_pwd(rs.getString("m_pwd"));
 				member.setM_zipcode(rs.getString("m_zipcode"));
 				
-				System.out.println(member);
-				
 				list.add(member);
 			}
 		}catch(Exception e) {
@@ -72,8 +70,9 @@ public class MemberDao {
 		String sql=null;
 		MemberDto member=new MemberDto();
 
-		
 		try {
+			Context init = new InitialContext();
+			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
 			con=ds.getConnection();
 			sql="select * from member where m_id=?";
 			pstmt=con.prepareStatement(sql);

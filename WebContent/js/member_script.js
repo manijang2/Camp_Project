@@ -21,12 +21,14 @@ function checkId(){
 		alert("id를 입력하시오")
 		regForm.m_id.focus();
 		return; 
+		
 	} else if(!regForm.m_id.value.match(pattern)){
 		alert("입력 양식에따라 작성하시오");
 		regForm.m_id.focus();
 		return;
+		
 	} else { //중복검사 및 결과 표시를 위한 window open 
-		url = "../member/member_registerValidId.jsp?m_id=" + regForm.m_id.value;  
+		url = "./MemberRegisterValidIdAction.do?m_id=" + regForm.m_id.value;  
 		window.open(url,"id","toolbar=no,width=300,height=150," +
 				"top=200,left=300,status=yes,scrollbars=yes,menubar=no");
 	}
@@ -119,7 +121,7 @@ function checkAddress() {
 //회원등록 입력 체크 ----------------------------------------------------------
 function checkRegisterIn(){
 	if(checkInput(regForm)){
-		regForm.action = "../member/member_registerOk.jsp";	
+		regForm.action = "./MemberRegisterOkAction.do";	
 		regForm.method="post";
 		regForm.submit(); 
 	}

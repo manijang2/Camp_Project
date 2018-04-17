@@ -29,7 +29,7 @@ function noticeInCheck() {
 // 오더(1개)
 function oneOrder(){
 	usemilige();
-	form.action="/web_project/order/order_proc.jsp";
+	form.action="/Camp_Project/order_proc.do";
 	form.submit();
 }
 
@@ -50,13 +50,20 @@ function CountChange(count) {
 
 //상품 리스트 버튼 함수
 function goOrder() {
-	//adminCheck();
-	form.action = "/web_project/order/order_one.jsp";
+	alert("asb");
+	form.action = "/Camp_Project/order_one.do";
 	form.submit();
 }
 function goCart() {
 	//adminCheck();
-	form.action = "/web_project/cart/cart_proc.jsp";
+	form.action = "/Camp_Project/cart_proc.do";
+	form.submit();
+}
+
+function goCart2() {
+	//adminCheck();
+	alert("ss");
+	form.action = "/cart_proc.do";
 	form.submit();
 }
 

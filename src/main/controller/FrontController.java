@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import admin.controller.MemberGetAction;
 import product.db.ProductDao;
 import product.db.ProductDto;
 
@@ -32,9 +33,26 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
-			//product 컨트롤러 start
-		}  else if (command.equals("/p_read.do")) {
+		}  else if(command.equals("/admin/main.do")) {
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/admin/admin_main.jsp");
+			
+		} else if(command.equals("/admin/memberMgr.do")) {
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/admin/admin_memberMgr.jsp");
+		} else if(command.equals("/admin/memberUpdate.do")) {
+			action = new MemberGetAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		else if (command.equals("/p_read.do")) {
 			//상품 상세보기 페이지
 			action = new ProductController();
 			try {
@@ -67,11 +85,6 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			forward.setRedirect(false);
 			forward.setPath("/product/p_cate2.jsp");
 
-		} else if(command.equals("/admin/main.do")) {
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("/admin/admin_main.jsp");
-
 		}
 		
 		/*------------------Member controller Start------------------*/
@@ -99,7 +112,15 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 		
 		/*------------------Member controller End------------------*/
 
-
+		//장바구니 추가
+		else if (command.equals("/cart_proc.do")) {
+			//베트스 상품 모음전
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/cart/cart_proc.jsp");
+		}
+		
+		
 		if (forward != null) {
 			if (forward.isRedirect()) {
 				response.sendRedirect(forward.getPath());

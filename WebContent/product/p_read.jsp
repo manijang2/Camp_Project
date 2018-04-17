@@ -20,9 +20,8 @@ ProductDto dto = productDao.selectProductData(code);
 <title>상품 상세정보 확인</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 
-
 <script type="text/javascript" src="/Camp_Project/js/script_product.js"></script>
-<script type="text/javascript" src="/Camp_Project/js/main_script.js"></script>
+<script type="text/javascript" src="/Camp_Project/js/main_script2.js"></script> 
 <link href="/Camp_Project/css/main_style.css" rel="stylesheet" type="text/css">
 </head>
 <body>

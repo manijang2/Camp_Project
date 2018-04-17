@@ -86,6 +86,17 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 		
 		}
 		
+		else if(command.equals("/member/MemberRegisterAction.do")) {
+			action= new MemberRegisterAction();
+			try {
+				forward = action.execute(request, response);
+				System.out.println("forward 성공");
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+					
+		}
+		
 		/*------------------Member controller End------------------*/
 
 

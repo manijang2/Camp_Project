@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 String memid = (String)session.getAttribute("idKey");
@@ -19,14 +19,14 @@ String m5[] = {"그릴","화로대","오븐","소품"};
 
 if(memid == null){
 	log = "<a href='/Camp_Project/member/member_login.jsp'>로그인</a>";
-	mem1 = "<a href='/web_project/member/member_register.jsp'>회원가입</a>";
+	mem1 = "<a href='/Camp_Project/member/member_register.jsp'>회원가입</a>";
 }else{
 	if(gradeKey != null && gradeKey.equals("admin")){
 		//admin 로그인 시 관리자 메뉴 보이기
-		log = "<a href='/web_project/member/member_logout.jsp'>로그아웃</a>";
+		log = "<a href='/Camp_Project/member/member_logout.jsp'>로그아웃</a>";
 		mem1 = "<br><a href='/Camp_Project/admin/main.do'>&#9776;관리자 메뉴</a>";
 	}else{
-		log = "<a href='/web_project/member/member_logout.jsp'>로그아웃</a>";
+		log = "<a href='/Camp_Project/member/member_logout.jsp'>로그아웃</a>";
 		mem2 = "<a href='/web_project/cart/cart.jsp'>장바구니</a>";
 		mem3 = "<a href='/web_project/order/order.jsp'>주문조회</a>";
 		mem4 = "<a href='javascript:delevery()'>배송조회</a>";
@@ -73,7 +73,7 @@ function searchData(p_name){
 		<table>
 			<tr>
 				<TD class="left">
-					<a href="/web_project/main/main.jsp"><img src="/Camp_Project/image/route_logo.png"></a>
+					<a href="/Camp_Project/main/main.jsp"><img src="/Camp_Project/image/route_logo.png"></a>
 				</TD>
 				<td class="right top" style="text-align: right;">
 					<div>

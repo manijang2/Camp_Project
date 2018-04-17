@@ -77,6 +77,7 @@
 					<td></td>
 				</tr>
 				<tr>
+					<!-- 주소 -->
 					<th class="th6" style="vertical-align: middle;">우편번호</th>
 					<td class="td7">
 						<input type="text" name="m_zipcode" id="postcode" placeholder="우편번호" size="7" readonly class="form-control input-sm">

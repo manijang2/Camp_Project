@@ -110,6 +110,8 @@ public class MemberDao {
 		String sql=null;
 		
 		try {
+			Context init = new InitialContext();
+			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
 			con=ds.getConnection();
 			sql="insert into member values" + 
 			"(?,?,?,?,?,?,?,?,?,?)";

@@ -1,6 +1,7 @@
 package admin.controller;
 
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,16 +18,41 @@ public class MemberGetAction implements Action {
 		ActionForward forward = new ActionForward();
 		MemberDao memberdao = new MemberDao();
 		
-		String id = request.getParameter("m_id"); 
-		MemberDto dto = memberdao.selectMemberById(id);
-		System.out.println(dto);
-		if(dto != null) {
-			forward.setRedirect(false);
-			forward.setPath("/admin/admin_member_update.jsp");
-			request.setAttribute("dto", dto);
-			return forward;
-		}	
+		request.setCharacterEncoding("utf-8");
 		
-		return null;
+		MemberDto dto = new MemberDto();
+		MemberDao dao = new MemberDao();
+
+		dto.setM_pwd(request.getParameter("m_pwd"));
+		dto.setM_name(request.getParameter("m_name"));
+		dto.setM_email(request.getParameter("m_email"));
+		dto.setM_phone(request.getParameter("m_phone"));
+		dto.setM_zipcode(request.getParameter("m_zipcode"));
+		dto.setM_address(request.getParameter("m_address"));
+		dto.setM_mileage(Integer.parseInt(request.getParameter("m_mileage")));
+		dto.setM_grade(request.getParameter("m_grade"));
+		dto.setM_date(new Timestamp(Integer.parseInt(request.getParameter("m_date"))));
+		dto.setM_id(request.getParameter("m_id"));
+		
+		String url = "/main.do"; 
+		//관리자일 경우 관리자 페이지로 이동
+		
+		HttpSession session = request.getSession();
+		
+		String grade = (String)session.getAttribute("gradeKey"); 
+		if(grade.equals("admin")) { //관리자 
+			url = "/admin/memberUpdate.do"; 
+		}
+		
+		boolean isUpdateOk = dao.updateMember(dto);
+		if(isUpdateOk) {
+			forward.setRedirect(false);
+			forward.setPath("/admin/admin_member_update_ok.jsp");
+		} else {
+			forward.setRedirect(false);
+			forward.setPath("/admin/admin_member_update_no.jsp");
+		}
+		
+		return forward;
 	}
 }

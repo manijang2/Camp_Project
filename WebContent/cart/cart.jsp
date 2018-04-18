@@ -8,20 +8,19 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 String c_id = (String)session.getAttribute("idKey");
-/* ArrayList<CartDto> list = (ArrayList)cartDao.cartRead(c_id); */
+ArrayList<CartDto> list = (ArrayList)cartDao.cartRead(c_id);
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>장바구니</title>
-<script src="/web_project/js/script.js"></script>
-<link href="/web_project/css/board.css" rel="stylesheet" type="text/css">
-
+<script type="text/javascript" src="/Camp_Project/js/main_script3.js"></script>
+<link href="/Camp_Project/css/board.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <div class="div">
-<%@include file="/main/main_top.jsp"%>
+<%@include file="/main/inc/main_top.inc" %>
 	<div class="div">
 	
 <br><br>
@@ -47,8 +46,8 @@ String c_id = (String)session.getAttribute("idKey");
 		<!-- 장바구니 내용 출력 -->
 		<tr style="text-align: center;">
 			<td width="80" style="vertical-align: middle;"><input type="checkbox" name="check" value="${l.c_num}"></td>
-			<td width="100" style="vertical-align: middle;"><img src="../product_image/${l.p_image1}" width="90"></td>
-			<td style="vertical-align: middle;"><a href = "../product/p_read.jsp?p_code=${l.c_pcode}">${l.p_name }</a></td>
+			<td width="100" style="vertical-align: middle;"><img src="/Camp_Project/image/product/${l.p_image1}" width="90"></td>
+			<td style="vertical-align: middle;"><a href = "/Camp_Project/p_read.do?p_code=${l.c_pcode}">${l.p_name }</a></td>
 			
 			<!-- 상품 수량체크 -->
 			<td width="150" height="20"  style="vertical-align: middle;">
@@ -57,9 +56,9 @@ String c_id = (String)session.getAttribute("idKey");
 						<td><input type="text" id="${l.c_num}" name="${l.c_num}" value="${l.c_quantity}" size="1" style="text-align:right" ></td>
 						<td width="10"><div>
 									<div>
-										<a href="JavaScript:cartCount('${l.c_num}','up');"><img src="../image/up.jpg" border="0"></a>
+										<a href="JavaScript:cartCount('${l.c_num}','up');"><img src="/Camp_Project/image/product/up.jpg" border="0"></a>
 									</div>
-										<div><a href="JavaScript:cartCount('${l.c_num}','down');"><img src="../image/dw.jpg" border="0"></a>
+										<div><a href="JavaScript:cartCount('${l.c_num}','down');"><img src="/Camp_Project/image/product/dw.jpg" border="0"></a>
 									</div>
 								</div>
 						</td>
@@ -99,7 +98,7 @@ String c_id = (String)session.getAttribute("idKey");
 </table>
 <div class="div">
  <input type="button" onclick="javasctipt:selectOrder()" value="선택상품 주문" class="btn btn-info btn-sm">
- <input type="button" onclick="javasctipt:selectDelete()" value="선택상품 삭제" class="btn btn-danger btn-sm">
+ <input type="button" onclick="javasctipt:selectDelete1()" value="선택상품 삭제" class="btn btn-danger btn-sm">
 </div>
 <br><br><br><br>
 <!-- 상품 주문하기 및 전체금액 표기 끝-->
@@ -107,7 +106,7 @@ String c_id = (String)session.getAttribute("idKey");
 	
 
 </div>
-<%@include file="/main/main_bottom.jsp"%>
+<%@include file="/main/inc/main_bottom.inc"%>
 
 </div>
 </body>

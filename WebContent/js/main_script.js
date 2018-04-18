@@ -56,7 +56,7 @@ function goOrder() {
 }
 function goCart() {
 	//adminCheck();
-	form.action = "/Camp_Project/cart_proc.do";
+	form.action = "/Camp_Project/cart_proc.do?c_pcode="+c_pcode;
 	form.submit();
 }
 
@@ -100,7 +100,7 @@ function commas(x) {
 function cartUpdate(c_num) {
 	ps = "p"+c_num;			// 상품 갯수를 갖고있는 폼의 아이디
 	ps2 = $("#"+c_num).val();	// 상품 갯수를 갖고있는 폼의 변경값
-	location.href = 'cart_update.jsp?c_num=' + c_num + '&c_quantity=' + ps2;
+	location.href = '/Camp_Project/cart_update.do?c_num=' + c_num + '&c_quantity=' + ps2;
 }
 
 //카트 - 수량 버튼
@@ -119,7 +119,7 @@ function cartCount(productNum,action) {
 //카트 선택 항목 삭제
 function selectDelete() { //선택 삭제 
 	if(confirm("삭제하시겠습니까?")) {
-		form.action = "../cart/cart_select_del.jsp";
+		form.action = "/cart_select_del.do";
 		form.method = "post";
 		form.submit();
 	}
@@ -131,9 +131,9 @@ function selectDelete() { //선택 삭제
 function cartDelete(c_num) {
 	deleteQ = confirm("삭제하시겠습니까");
 	if (deleteQ) {
-		location.href = 'cart_delete.jsp?c_num='+c_num;
+		location.href = '/Camp_Project/cart_delete.do?c_num='+c_num;
 	} else {
-		location.href = "cart.jsp";
+		location.href = "/Camp_Project/cart/cart.jsp";
 	}
 }
 // 클릭상품보기
@@ -147,7 +147,8 @@ function allChk() {
 	var chk = form.check; // for로 돌린 체크박스
 	var allchk = form.allCheck.checked; // 모두체크용 체크박스 값
 	var tot = chk.length;
-
+	alert(tot);
+	alert(chk.length);
 	for (var i = 0; i < tot; i++) {
 		if (allchk)
 			chk[i].checked = true;

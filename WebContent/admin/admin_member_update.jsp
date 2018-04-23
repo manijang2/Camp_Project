@@ -12,7 +12,7 @@
 <%@include file="inc/admin_menu.inc"%>  
 <div id="main">
 <div>
-<%@include file="/member/inc/member_update.inc"%> 
+<%@include file="inc/member_update.inc"%> 
 </div>
 </body>
 </html>

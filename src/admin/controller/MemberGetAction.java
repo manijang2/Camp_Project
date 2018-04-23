@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import admin.db.AdminDao;
 import main.controller.Action;
 import main.controller.ActionForward;
 import member.MemberDto;
@@ -21,7 +22,7 @@ public class MemberGetAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		
 		MemberDto dto = new MemberDto();
-		MemberDao dao = new MemberDao();
+		AdminDao dao = new AdminDao();
 
 		dto.setM_pwd(request.getParameter("m_pwd"));
 		dto.setM_name(request.getParameter("m_name"));
@@ -29,9 +30,9 @@ public class MemberGetAction implements Action {
 		dto.setM_phone(request.getParameter("m_phone"));
 		dto.setM_zipcode(request.getParameter("m_zipcode"));
 		dto.setM_address(request.getParameter("m_address"));
-		dto.setM_mileage(Integer.parseInt(request.getParameter("m_mileage")));
+		//dto.setM_mileage(Integer.parseInt(request.getParameter("m_mileage")));
 		dto.setM_grade(request.getParameter("m_grade"));
-		dto.setM_date(new Timestamp(Integer.parseInt(request.getParameter("m_date"))));
+		//dto.setM_date(new Timestamp(Integer.parseInt(request.getParameter("m_date"))));
 		dto.setM_id(request.getParameter("m_id"));
 		
 		String url = "/main.do"; 
@@ -44,14 +45,18 @@ public class MemberGetAction implements Action {
 			url = "/admin/memberUpdate.do"; 
 		}
 		
-		boolean isUpdateOk = dao.updateMember(dto);
+		forward.setRedirect(true);
+		forward.setPath("/Camp_Project/admin/admin_member_update.jsp");
+		
+		/*
+		//boolean isUpdateOk = dao.updateMember(dto);
 		if(isUpdateOk) {
 			forward.setRedirect(false);
 			forward.setPath("/admin/admin_member_update_ok.jsp");
 		} else {
 			forward.setRedirect(false);
 			forward.setPath("/admin/admin_member_update_no.jsp");
-		}
+		}*/
 		
 		return forward;
 	}

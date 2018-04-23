@@ -39,10 +39,10 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			forward.setRedirect(false);
 			forward.setPath("/admin/admin_main.jsp");
 			
-		} else if(command.equals("/admin/memberMgr.do")) {
+		} else if(command.equals("/admin/memberList.do")) {
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/admin/admin_memberMgr.jsp");
+			forward.setPath("/admin/member_list.jsp");
 		} else if(command.equals("/admin/memberUpdate.do") && request.getMethod().equals("GET")) {
 			action = new MemberGetAction();
 			try {

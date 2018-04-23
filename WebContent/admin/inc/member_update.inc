@@ -15,9 +15,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link href="/Camp_Project/css/member_style.css" rel="stylesheet" type="text/css">
 
-
-
-
 </head>
 <body>
 	<%@include file="/main/inc/main_top.inc"%>

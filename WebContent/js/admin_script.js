@@ -90,3 +90,18 @@ function checkInput(form){
 	}
 	return false;
 }
+
+function confirmDeleteEach(id) { //개별 삭제 
+	if(confirm("탈퇴하시겠습니까?")) {
+		
+		var $form = $('<form></form>');
+		$form.attr('action', '/Camp_Project/admin/memberDelete.do');
+		$form.attr('method', 'post');
+		$form.appendTo('body');
+	     
+	    var idx = $('<input type="hidden" value="' + id + '" name="m_id">');
+	    $form.append(idx);
+
+	    $form.submit();
+	}
+}

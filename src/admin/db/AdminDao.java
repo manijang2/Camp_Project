@@ -116,28 +116,20 @@ public class AdminDao {
 	}
 
 	/*나중에 수정해야할거같음 -원본은 동적 sql사용 String ids[]*/
-	public boolean deleteMember(String id)throws SQLException{
-		boolean isDeleted = false;
-		String sql=null;
+	public boolean deleteMember(MemberDto dto)throws SQLException, NamingException{
 		
-		try {
-			con=ds.getConnection();
-			sql="delete from member where m_id=?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.executeUpdate();
-			isDeleted=true;
-		}catch(Exception e) {
-			e.printStackTrace();
-		}	finally {
-			try {
-				if(pstmt!=null)pstmt.close();
-				if(con!=null)con.close();
-			}catch(Exception ex) {}
-		}
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		
+		pstmt=con.prepareStatement("delete from member where m_id=?");
+		pstmt.setString(1, dto.getM_id());
+		int deleteCnt = pstmt.executeUpdate();
+		
+		pstmt.close();
+		con.close();
 				
-		return isDeleted;
-		
+		return (0 < deleteCnt) ? true : false;
 	}
 	
 

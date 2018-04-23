@@ -25,7 +25,7 @@ function closeNav() {
 //회원수정 입력 체크 ----------------------------------------------------------
 function checkUpdateIn(){
 	if(checkInput(upForm)){
-		upForm.action = "../member/member_updateOk.jsp";	
+		upForm.action = "/Camp_Project/admin/memberUpdate.do";	
 		upForm.method="post";
 		upForm.submit(); 
 	}

@@ -50,7 +50,7 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/admin/memberUpdate_Proc.do")) {
+		} else if(command.equals("/admin/memberUpdate.do") && request.getMethod().equals("POST")) {
 			action = new MemberUpdateAction();
 			
 			try {

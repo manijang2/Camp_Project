@@ -20,14 +20,14 @@
 
 </head>
 <body>
-	<%@include file="/member/inc/member_top.inc"%>
+	<%@include file="/main/inc/main_top.inc"%>
 
 	<br>
 	<br>
 	<div class="div">
 		<br> <br>
 		<div class="inner_div2">
-			<form name="upForm" action="./MemberUpdateAction.me" method="post" onsubmit="">
+			<form name="upForm" action="/Camp_Project/admin/memberUpdate.do" method="post" onsubmit="">
 				<table class="table table-striped table-hover reg_table">
 					<tr class="active">
 						<th class="th6" colspan="3"><b style="color: #FFFFFF"> user님의 회원정보 수정</b></th>

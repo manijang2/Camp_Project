@@ -65,7 +65,7 @@ public class AdminDao {
 	
 	public MemberDto selectMemberById(String id)throws SQLException{
 		String sql=null;
-		MemberDto member=new MemberDto();
+		MemberDto member = null;
 
 		try {
 			Context init = new InitialContext();
@@ -77,6 +77,7 @@ public class AdminDao {
 			rs=pstmt.executeQuery();
 			
 			if(rs.next()) {
+				member = new MemberDto();
 				member.setM_address(rs.getString("m_address"));
 				member.setM_date(rs.getTimestamp("m_date"));
 				member.setM_email(rs.getString("m_email"));

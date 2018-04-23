@@ -26,7 +26,7 @@ public class MemberGetAction implements Action {
 		
 		if(dto == null) {
 			forward.setRedirect(false);
-			forward.setPath("/Camp_Project/admin/admin_error.jsp");
+			forward.setPath("/admin/admin_error.jsp");
 		} else {
 			request.setAttribute("dto", dto);
 			forward.setRedirect(false);

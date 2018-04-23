@@ -24,7 +24,7 @@ public class MemberGetAction implements Action {
 		MemberDto dto = admindao.selectMemberById(request.getParameter("m_id"));
 		if(dto == null) {
 			forward.setRedirect(false);
-			forward.setPath("/admin/admin_error.jsp");
+			forward.setPath("/admin/error.jsp");
 		} else {
 			request.setAttribute("dto", dto);
 			forward.setRedirect(false);

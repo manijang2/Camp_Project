@@ -35,7 +35,7 @@ public class MemberUpdateAction implements Action {
 		if(isUpdateOk){ 
 			forward.setPath("/admin/admin_memberMgr.jsp");
 		} else {
-			forward.setPath("/admin/admin_error.jsp");
+			forward.setPath("/admin/error.jsp");
 		}
 		
 		return forward;

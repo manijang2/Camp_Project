@@ -59,7 +59,7 @@
 					</tr>
 					<tr>
 						<th class="th6" style="vertical-align: middle;">우편번호</th>
-						<td class="td7"><input type="text" name="m_zipcode" id="postcode" placeholder="우편번호" size="7" value="${ m_zipcode}" readonly  class="form-control input-sm" ></td>
+						<td class="td7"><input type="text" name="m_zipcode" id="postcode" placeholder="우편번호" size="7" value="${dto.m_zipcode}" readonly  class="form-control input-sm" ></td>
 						<td class="td8"><input type="button" value="우편번호찾기" id="btnZip" onclick="javascript:execDaumPostcode()" class="btn btn-default btn-sm"></td>
 					</tr>
 					<tr>

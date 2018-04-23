@@ -22,8 +22,6 @@ public class MemberGetAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		
 		MemberDto dto = admindao.selectMemberById(request.getParameter("m_id"));
-		System.out.println(dto);
-		
 		if(dto == null) {
 			forward.setRedirect(false);
 			forward.setPath("/admin/admin_error.jsp");

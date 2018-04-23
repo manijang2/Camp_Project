@@ -14,9 +14,6 @@ import javax.sql.DataSource;
 
 import member.MemberDto;
 
-import java.sql.Timestamp;
-
-
 public class AdminDao {
 	
 	DataSource ds;
@@ -26,8 +23,7 @@ public class AdminDao {
 		
 		
 	public List<MemberDto> selectAll()throws SQLException, NamingException{
-		List<MemberDto> list = new ArrayList<MemberDto>();
-		
+
 		Context init = new InitialContext();
 		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
 		con=ds.getConnection();
@@ -36,6 +32,7 @@ public class AdminDao {
 		pstmt=con.prepareStatement(sql);
 		rs=pstmt.executeQuery();
 		
+		List<MemberDto> list = new ArrayList<MemberDto>();
 		while(rs.next()) {
 			MemberDto member=new MemberDto();
 			member.setM_address(rs.getString("m_address"));
@@ -143,44 +140,6 @@ public class AdminDao {
 		
 	}
 	
-	/*기존방식과 다르게 하였음*/ 
-	public boolean checkLogin(String id, String pw){
-		boolean isLoginChecked = false;
-		String sql=null;
-		System.out.println("id/pw : memberdao "+id + " "+ pw);
-		
-		try {
-			Context init = new InitialContext();
-			ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
-			con=ds.getConnection();
-			sql="select * from member where m_id=? ";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1,id);
-			rs=pstmt.executeQuery();
-			System.out.println(sql);
-
-			
-			if(rs.next()) {
-				String memberpw = rs.getString("m_pwd");
-				System.out.println(memberpw);
-
-				if(memberpw.equals(pw)) {
-					isLoginChecked=true;
-				}
-			}	
-		}catch(Exception e) {
-			e.printStackTrace();
-		}	finally{
-			try{if(rs!=null)rs.close();
-			if(pstmt!=null)pstmt.close();
-			if(con!=null) con.close();
-			}catch(Exception ex) {}
-		}
-			
-		
-		return isLoginChecked;
-
-	}
 
 	/*true : 아이디 존재함 */
 	
@@ -209,7 +168,4 @@ public class AdminDao {
 			
 		return isIdChecked;
 	}
-	
-	
-
 }

@@ -1,17 +1,12 @@
 package admin.controller;
 
-import java.io.PrintWriter;
-import java.sql.Timestamp;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import admin.db.AdminDao;
 import main.controller.Action;
 import main.controller.ActionForward;
 import member.MemberDto;
-import member.MemberDao;
 
 
 public class MemberGetAction implements Action {

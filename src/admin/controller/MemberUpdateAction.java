@@ -33,7 +33,7 @@ public class MemberUpdateAction implements Action {
 		
 		boolean isUpdateOk = adminrdao.updateMember(memberDto);
 		if(isUpdateOk){ 
-			forward.setPath("/admin/admin_memberMgr.jsp");
+			forward.setPath("/admin/member_list.jsp");
 		} else {
 			forward.setPath("/admin/error.jsp");
 		}

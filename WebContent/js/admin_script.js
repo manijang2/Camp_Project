@@ -91,6 +91,17 @@ function checkInput(form){
 	return false;
 }
 
+function confirmDelete() { //선택 삭제 
+	if(confirm("선택삭제 하시겠습니까?")) {
+		
+		var $form = $('form[name=memberForm]');
+		$form.attr('action', '/Camp_Project/admin/memberDelete.do');
+		$form.attr('method', 'post');
+
+	    $form.submit();
+	}
+}
+
 function confirmDeleteEach(id) { //개별 삭제 
 	if(confirm("탈퇴하시겠습니까?")) {
 		

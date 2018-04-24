@@ -33,7 +33,7 @@
 					<td class="td7">
 					<!-- id -->
 					<input type="text" name="m_id" size="15" placeholder="아이디" class="form-control input-sm" /></td>
-					<td class="td8"><input type="button" value="ID중복확인" onclick="checkId()" class="btn btn-default btn-sm" /> 
+					<td class="td8"><input type="button" value="ID중복확인" onclick="javascript:checkId()" class="btn btn-default btn-sm" /> 
 						<input type="hidden" name="isIdChecked" value="unchecked" /> <b>tip)영문,숫자 4~12자 이상</b></td>
 				</tr>
 				<tr>

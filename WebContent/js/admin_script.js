@@ -116,3 +116,11 @@ function confirmDeleteEach(id) { //개별 삭제
 	    $form.submit();
 	}
 }
+
+function clearMemberFiled() {
+	$('input[name=m_name]').val('');
+	$('input[name=m_email]').val('');
+	$('input[name=m_phone]').val('');
+	$('input[name=m_zipcode]').val('');
+	$('input[name=m_address]').val('');
+}

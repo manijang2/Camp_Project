@@ -26,7 +26,7 @@
 	<div class="div">
 		<br> <br>
 		<div class="inner_div2">
-			<form name="upForm" action="/Camp_Project/admin/memberUpdate.do" method="post" onsubmit="">
+			<form name="upForm" action="/Camp_Project/admin/memberUpdate.do" method="post">
 				<table class="table table-striped table-hover reg_table">
 					<tr class="active">
 						<th class="th6" colspan="3"><b style="color: #FFFFFF"> user님의 회원정보 수정</b></th>
@@ -104,9 +104,9 @@
 					끝 -------------------->
 					<tr>
 						<td colspan="3" class="th6">
-						 <input type="reset" value="수정 취소" onclick="history.back()" class="btn btn-default btn-sm"/>
+						 <input type="button" value="수정 취소" onclick="history.back()" class="btn btn-default btn-sm"/>
 						 &nbsp;&nbsp;
-						 <input type="reset" value="다시쓰기" class="btn btn-default btn-sm"/>
+						 <input type="button" value="다시쓰기" class="btn btn-default btn-sm" onclick="clearMemberFiled()"/>
 						 &nbsp;&nbsp;
 						 <input type="button" value="회원수정" id="btnUp" onclick="javascript:checkUpdateIn()" class="btn btn-primary btn-sm"/>
 						 &nbsp;&nbsp;

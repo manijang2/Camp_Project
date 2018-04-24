@@ -144,8 +144,8 @@ function checkInput(form){
 	if(form.m_id.value === ""){
 		alert("id 입력해주세요")
 		form.m_id.focus();
-	//}else if(form.isIdChecked != null && form.isIdChecked.value != "checked"){
-	//	alert("중복체크해주세요");
+	}else if(form.isIdChecked != null && form.isIdChecked.value != "checked"){
+		alert("중복체크해주세요");
 	}else if(!form.m_id.value.match(ptnId)){
 		alert("입력 양식에따라 작성하시오");
 		form.m_id.focus();

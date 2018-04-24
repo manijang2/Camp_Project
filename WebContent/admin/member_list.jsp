@@ -61,17 +61,16 @@
 			</c:choose>
 		</td>
 		<td class="td5">
-			<input type="button" value="수정" onclick="javascript:location.href='/Camp_Project/admin/memberUpdate.do?m_id=${m.m_id}'" class="btn btn-info btn-xs" /> / 
-			<input type="button" value="삭제" onclick="javascript:confirmDeleteEach('${m.m_id}')" class="btn btn-danger btn-xs"/>
+			<input type="button" value="수정" onclick="location.href='/Camp_Project/admin/memberUpdate.do?m_id=${m.m_id}'" class="btn btn-info btn-xs" /> / 
+			<input type="button" value="삭제" onclick="confirmDeleteEach('${m.m_id}')" class="btn btn-danger btn-xs"/>
 		</td>	
 	</tr>	
 	</c:forEach>
 	<tr>
 		<td colspan="5">
-			<input type="button" value="선택삭제" onclick="javascript:confirmDelete()" class="btn btn-danger"/>
-			<input type="button" value="회원등록" onclick="javascript:location.href='../member/member_register.jsp'" class="btn btn-primary"/> 
+			<input type="button" value="선택삭제" onclick="confirmDelete()" class="btn btn-danger"/>
+			<input type="button" value="회원등록" onclick="location.href='/Camp_Project/admin/member_register.do'" class="btn btn-primary"/> 
 		</td>
-
 	</tr>
 </table>
 </form>

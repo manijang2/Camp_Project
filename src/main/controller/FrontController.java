@@ -7,11 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import admin.controller.MemberAllGetAction;
 import admin.controller.MemberDeleteAction;
 import admin.controller.MemberGetAction;
 import admin.controller.MemberUpdateAction;
-import product.db.ProductDao;
-import product.db.ProductDto;
 
 public class FrontController extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
@@ -35,12 +34,14 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 		}  else if(command.equals("/admin/main.do")) {
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/admin/main.jsp");
-			
+			forward.setPath("/admin/main.jsp");	
 		} else if(command.equals("/admin/memberList.do")) {
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("/admin/member_list.jsp");
+			action = new MemberAllGetAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	
 			
 		} else if(command.equals("/admin/memberUpdate.do") && request.getMethod().equals("GET")) {
 			action = new MemberGetAction();

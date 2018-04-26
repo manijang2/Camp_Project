@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import admin.controller.MemberAllGetAction;
+import admin.controller.MemberCheckIDAction;
 import admin.controller.MemberDeleteAction;
 import admin.controller.MemberGetAction;
 import admin.controller.MemberUpdateAction;
@@ -71,6 +72,14 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("/admin/member_register.jsp");
+			
+		} else if(command.equals("/admin/member_id_check.do") && request.getMethod().equals("GET")) {
+			action = new MemberCheckIDAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		else if (command.equals("/p_read.do")) {
@@ -138,7 +147,6 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
-			
 		}
 		
 		/*------------------Member controller End------------------*/

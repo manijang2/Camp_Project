@@ -10,8 +10,6 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.js"></script>
-
-<script src="/Camp_Project/js/member_script.js"></script>
 <link href="/Camp_Project/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link href="/Camp_Project/css/member_style.css" rel="stylesheet" type="text/css">
 

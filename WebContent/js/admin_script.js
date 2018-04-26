@@ -124,3 +124,25 @@ function clearMemberFiled() {
 	$('input[name=m_zipcode]').val('');
 	$('input[name=m_address]').val('');
 }
+
+
+
+//회원ID중복확인 ----------------------------------------------------
+function checkId(){	
+	var pattern = /^[A-Za-z0-9]{4,12}$/; //영문 대문자 소문자 숫자   가능 4~12 글자수 제한
+	if(regForm.m_id.value === ""){ 
+		alert("id를 입력하시오")
+		regForm.m_id.focus();
+		return; 
+		
+	} else if(!regForm.m_id.value.match(pattern)){
+		alert("입력 양식에따라 작성하시오");
+		regForm.m_id.focus();
+		return;
+		
+	} else { //중복검사 및 결과 표시를 위한 window open 
+		url = "/Camp_Project/admin/member_id_check.do?m_id=" + regForm.m_id.value;  
+		window.open(url,"id","toolbar=no,width=300,height=150," +
+				"top=200,left=300,status=yes,scrollbars=yes,menubar=no");
+	}
+}

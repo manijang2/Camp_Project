@@ -135,29 +135,24 @@ public class AdminDao {
 
 	/*true : 아이디 존재함 */
 	
-	public boolean checkId(String id){
+	public boolean checkId(String id) throws NamingException, SQLException{
 		boolean  isIdChecked = false;
-		String sql=null;
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
 		
-		try {
-			con=ds.getConnection();
-			sql="select * from member where m_id=? ";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1,id);
-			rs=pstmt.executeQuery();
-			
-			if(rs.next()) {
-				isIdChecked=true;
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}	finally{
-			try{if(rs!=null)rs.close();
-			if(pstmt!=null)pstmt.close();
-			if(con!=null) con.close();
-			}catch(Exception ex) {}
+		pstmt=con.prepareStatement("select * from member where m_id=?");
+		pstmt.setString(1, id);
+		rs=pstmt.executeQuery();
+		
+		if(rs.next()) {
+			isIdChecked=true;
 		}
-			
+
+		rs.close();
+		pstmt.close();
+		con.close();
+
 		return isIdChecked;
 	}
 }

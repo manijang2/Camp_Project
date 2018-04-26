@@ -146,3 +146,13 @@ function checkId(){
 				"top=200,left=300,status=yes,scrollbars=yes,menubar=no");
 	}
 }
+
+//회원등록 입력 체크 ----------------------------------------------------------
+function checkRegisterIn(){
+	
+	if(checkInput(regForm)){
+		regForm.action = "/Camp_Project/admin/member_register.do";	
+		regForm.method="post";
+		regForm.submit();
+	}
+}

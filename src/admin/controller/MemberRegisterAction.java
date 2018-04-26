@@ -35,15 +35,10 @@ public class MemberRegisterAction implements Action{
 		
 		boolean isInsert = admindao.insertMember(memberdto);
 		if(isInsert) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('회원가입에 성공하였습니다.');");
-			out.println("location.href='/admin/member_list.do';");
-			out.println("</script>");
-			out.close();
-		} else {
 			forward.setRedirect(true);
+			forward.setPath("/Camp_Project/admin/memberList.do");
+		} else {
+			forward.setRedirect(false);
 			forward.setPath("/admin/error.jsp");
 		}
 		

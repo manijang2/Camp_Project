@@ -156,3 +156,13 @@ function checkRegisterIn(){
 		regForm.submit();
 	}
 }
+
+//이메일 자동 편집 ------------------------------------------------
+function editEmail(){
+	var email = regForm.m_email.value + regForm.sel.value;
+	var splits = email.split("@");
+	if(splits.length > 2) {
+		email = splits[0] + regForm.sel.value;
+	}		
+	regForm.m_email.value = email;
+}

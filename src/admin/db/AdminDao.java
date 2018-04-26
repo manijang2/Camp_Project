@@ -155,4 +155,39 @@ public class AdminDao {
 
 		return isIdChecked;
 	}
+	
+	public boolean insertMember(MemberDto dto)throws SQLException, NamingException{
+		boolean isInserted = false;
+		String sql=null;
+		
+		System.out.println(dto);
+		
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		sql="insert into member values" + 
+		"(?,?,?,?,?,?,?,?,?,?)";
+		
+		pstmt=con.prepareStatement(sql);
+		pstmt.setString(1, dto.getM_id());
+		pstmt.setString(2, dto.getM_pwd());
+		pstmt.setString(3, dto.getM_name());
+		pstmt.setString(4, dto.getM_email());
+		pstmt.setString(5, dto.getM_phone());
+		pstmt.setString(6, dto.getM_zipcode());
+		pstmt.setString(7, dto.getM_address());
+		pstmt.setInt(8, dto.getM_mileage());
+		pstmt.setString(9, dto.getM_grade());
+		pstmt.setTimestamp(10, dto.getM_date());
+		
+		pstmt.executeUpdate();
+		
+		isInserted=true;
+		
+		pstmt.close();
+		con.close();
+		
+		return isInserted;
+
+	}
 }

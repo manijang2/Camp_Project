@@ -166,3 +166,30 @@ function editEmail(){
 	}		
 	regForm.m_email.value = email;
 }
+
+//전화번호 자동 편집 ------------------------------------------------
+function editPhone(form){ //keypress event(누른 후 입력됨, 즉 입력 전 이벤트 콜) 
+	var phoneNum = form.m_phone.value.replace(/-/g, ""); 
+	var length = phoneNum.length; 
+	if(phoneNum.charAt(1) > 1) { //일반전화(02~)
+		if(length <= 9) {// case1: 02-555-5555 (9자리: 2-3-4)
+			dash1 = 2; dash2 = 5;
+		} else {// case2: 02-5555-5555 (10자리: 2-4-4)
+			dash1 = 2; dash2 = 6;
+		}
+	} else { //핸드폰(01~)
+		if(length <= 10) {// case1: 010-555-5555 (10자리: 3-3-4) 
+			dash1 = 3; dash2 = 6;
+		} else {// case2: 010-5555-5555 (11자리 : 3-4-4) 
+			dash1 = 3; dash2 = 7;
+		}  
+	}
+	
+	if(dash1 < length && length <= dash2) { //대쉬가 1개인 경우 
+		phoneNum = phoneNum.slice(0,dash1) + "-" + phoneNum.slice(dash1,length+1);
+	} else if(length > dash2) { //대쉬가 2개인 경우 
+		phoneNum = phoneNum.slice(0,dash1) + "-" + phoneNum.slice(dash1,dash2) + "-" + phoneNum.slice(dash2,length+1);
+	}
+	
+	form.m_phone.value = phoneNum;
+}

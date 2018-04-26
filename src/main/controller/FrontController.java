@@ -74,6 +74,12 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			forward.setPath("/admin/member_register.jsp");
 			
 		} else if(command.equals("/admin/member_register.do") && request.getMethod().equals("POST")) {
+			action = new admin.controller.MemberRegisterAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
 		} else if(command.equals("/admin/member_id_check.do") && request.getMethod().equals("GET")) {
 			action = new MemberCheckIDAction();

@@ -1,5 +1,8 @@
 package admin.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -9,22 +12,18 @@ import main.controller.ActionForward;
 import member.MemberDto;
 
 
-public class MemberGetAction implements Action {
+public class MemberAllGetAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		ActionForward forward = new ActionForward();
 		AdminDao admindao = new AdminDao();
 		
 		request.setCharacterEncoding("utf-8");
 		
-		MemberDto dto = admindao.selectMemberById(request.getParameter("m_id"));
-		if(dto == null) {
-			forward.setRedirect(false);
-			forward.setPath("/admin/error.jsp");
-		} else {
-			request.setAttribute("dto", dto);
-			forward.setRedirect(false);
-			forward.setPath("/admin/member_update.jsp");
-		}
+		List<MemberDto> list = admindao.selectAll();
+		request.setAttribute("list", list);
+		forward.setRedirect(false);
+		forward.setPath("/admin/member_list.jsp");
+		
 		
 		return forward;
 	}

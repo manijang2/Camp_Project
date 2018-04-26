@@ -7,19 +7,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import admin.controller.MemberAllGetAction;
+import admin.controller.MemberDeleteAction;
 import admin.controller.MemberGetAction;
-import product.db.ProductDao;
-import product.db.ProductDto;
+import admin.controller.MemberUpdateAction;
 
 public class FrontController extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String RequestURI = request.getRequestURI();
-		System.out.println(RequestURI);
 		String contextPath = request.getContextPath();
-		System.out.println(contextPath);
 		String command = RequestURI.substring(contextPath.length());
-		System.out.println(command);
 		ActionForward forward = null;
 		Action action = null;
 
@@ -36,20 +34,43 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 		}  else if(command.equals("/admin/main.do")) {
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/admin/admin_main.jsp");
+			forward.setPath("/admin/main.jsp");	
+		} else if(command.equals("/admin/memberList.do")) {
+			action = new MemberAllGetAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	
 			
-		} else if(command.equals("/admin/memberMgr.do")) {
-			forward = new ActionForward();
-			forward.setRedirect(false);
-			forward.setPath("/admin/admin_memberMgr.jsp");
-		} else if(command.equals("/admin/memberUpdate.do")) {
+		} else if(command.equals("/admin/memberUpdate.do") && request.getMethod().equals("GET")) {
 			action = new MemberGetAction();
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/admin/memberUpdate.do") && request.getMethod().equals("POST")) {
+			action = new MemberUpdateAction();
 			
 			try {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("/admin/memberDelete.do") && request.getMethod().equals("POST")) {
+			action = new MemberDeleteAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/admin/member_register.do") && request.getMethod().equals("GET")) {
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/admin/member_register.jsp");
 		}
 		
 		else if (command.equals("/p_read.do")) {
@@ -84,7 +105,6 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("/product/p_cate2.jsp");
-
 		}
 		
 		/*------------------Member controller Start------------------*/
@@ -125,11 +145,29 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 
 		//장바구니 추가
 		else if (command.equals("/cart_proc.do")) {
-			//베트스 상품 모음전
+			//장바구니 상품 insert
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("/cart/cart_proc.jsp");
-		}
+			
+		} else if (command.equals("/cart_delete.do")) {
+			//장바구니 품목 삭제
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/Camp_Project/cart/cart.jsp");
+			
+		} else if (command.equals("/cart_update.do")) {
+			//카트 - 주문 수량 변경버튼
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/Camp_Project/cart/cart.jsp");
+			
+		} else if (command.equals("/cart_select_del.do")) {
+			//장바구니 -카트 선택품목 삭제 하기 (아직 안함)
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/cart/cart.jsp");
+		} 
 		
 		
 		if (forward != null) {

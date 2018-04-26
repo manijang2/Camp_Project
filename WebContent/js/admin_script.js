@@ -25,7 +25,7 @@ function closeNav() {
 //회원수정 입력 체크 ----------------------------------------------------------
 function checkUpdateIn(){
 	if(checkInput(upForm)){
-		upForm.action = "../member/member_updateOk.jsp";	
+		upForm.action = "/Camp_Project/admin/memberUpdate.do";	
 		upForm.method="post";
 		upForm.submit(); 
 	}
@@ -89,4 +89,38 @@ function checkInput(form){
 		return true;	
 	}
 	return false;
+}
+
+function confirmDelete() { //선택 삭제 
+	if(confirm("선택삭제 하시겠습니까?")) {
+		
+		var $form = $('form[name=memberForm]');
+		$form.attr('action', '/Camp_Project/admin/memberDelete.do');
+		$form.attr('method', 'post');
+
+	    $form.submit();
+	}
+}
+
+function confirmDeleteEach(id) { //개별 삭제 
+	if(confirm("탈퇴하시겠습니까?")) {
+		
+		var $form = $('<form></form>');
+		$form.attr('action', '/Camp_Project/admin/memberDelete.do');
+		$form.attr('method', 'post');
+		$form.appendTo('body');
+	     
+	    var idx = $('<input type="hidden" value="' + id + '" name="m_id">');
+	    $form.append(idx);
+
+	    $form.submit();
+	}
+}
+
+function clearMemberFiled() {
+	$('input[name=m_name]').val('');
+	$('input[name=m_email]').val('');
+	$('input[name=m_phone]').val('');
+	$('input[name=m_zipcode]').val('');
+	$('input[name=m_address]').val('');
 }

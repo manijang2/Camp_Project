@@ -10,8 +10,8 @@
 //String memid = (String)session.getAttribute("idKey");
 String adkey = (String)session.getAttribute("gradeKey");
 
-int code = Integer.parseInt(request.getParameter("p_code"));
-ProductDto dto = productDao.selectProductData(code);
+int p_code = Integer.parseInt(request.getParameter("p_code"));
+ProductDto dto = productDao.selectProductData(p_code);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -82,7 +82,7 @@ ProductDto dto = productDao.selectProductData(code);
 									<input type="text" name="quantity" value="1" size="3" style="text-align:center"> 
 									<input type="hidden" name="c_pcode" value="${list.p_code}">
 							    </td>
-						        <td width="20"><a href="JavaScript:CountChange('up');"><img src="/Camp_Project/image/up.jpg" width="11" height="9" border="0"></a><br><a href="JavaScript:CountChange('down');"><img src="/Camp_Project/image/dw.jpg" width="11" height="9" border="0"></a></td>
+						        <td width="20"><a href="JavaScript:CountChange('up');"><img src="/Camp_Project/image/product/up.jpg" width="11" height="9" border="0"></a><br><a href="JavaScript:CountChange('down');"><img src="/Camp_Project/image/product/dw.jpg" width="11" height="9" border="0"></a></td>
 						     </tr>
 						</table>
 					<!-- 상품 수량 체크부분끝 -->

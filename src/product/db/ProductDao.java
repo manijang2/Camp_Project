@@ -14,21 +14,26 @@ import javax.sql.DataSource;
 
 
 public class ProductDao {
-		
+	
+	DataSource ds;
+	Connection con=null;
+	PreparedStatement pstmt = null;
+	ResultSet rs=null;
+	
+	
 	//상품 상세보기
 	public ProductDto selectProductData(int p_code) throws Exception{
 		System.out.println("p_code값:" +p_code);
-		Connection conn = null;
 		String sql = "select * from product inner join category on p_cnum=ct_num where p_code=" +p_code;
 		ProductDto dto = null;
 		System.out.println("aaaaa");
 		
 		try {
 			Context init = new InitialContext();
-			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
-			conn = ds.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
+			ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				dto = new ProductDto();
@@ -36,6 +41,7 @@ public class ProductDao {
 				dto.setP_price(rs.getInt("p_price"));
 				dto.setP_stock(rs.getInt("p_stock"));
 				dto.setP_brand(rs.getString("p_brand"));
+				dto.setP_code(rs.getInt("p_code"));
 				dto.setP_origin(rs.getString("p_origin"));
 				dto.setP_image1(rs.getString("p_image1"));
 				dto.setP_image2(rs.getString("p_image2"));
@@ -56,6 +62,11 @@ public class ProductDao {
 		}catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("selectProductData 에러:");
+		}finally{
+			try{if(rs!=null)rs.close();
+			if(pstmt!=null)pstmt.close();
+			if(con!=null) con.close();
+			}catch(Exception ex) {}
 		}
 		
 		return dto;
@@ -64,16 +75,15 @@ public class ProductDao {
 	//베스트상품 모음전 db연동
 	public List<ProductDto> productBest() throws Exception{
 		
-		Connection conn = null;
 		String sql = "select * from product order by p_sales desc";
 		List<ProductDto> list = new ArrayList<ProductDto>();
 		
 		try {
 			Context init = new InitialContext();
-			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
-			conn = ds.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
+			ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				ProductDto dto = new ProductDto();
@@ -98,22 +108,27 @@ public class ProductDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("productBest 에러:");
-		} 
+		} finally{
+			try{if(rs!=null)rs.close();
+			if(pstmt!=null)pstmt.close();
+			if(con!=null) con.close();
+			}catch(Exception ex) {}
+		}
 		return list;
 	}
 	
 	//신상품 카테고리
 	public List<ProductDto> selectNewProduct() throws SQLException{
-		Connection conn = null;
+
 		String sql = "select * from product order by p_date desc";
 		List<ProductDto> list = new ArrayList<ProductDto>();
 		
 		try {
 			Context init = new InitialContext();
-			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
-			conn = ds.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
+			ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				ProductDto dto = new ProductDto();
@@ -137,7 +152,12 @@ public class ProductDao {
 			}
 		} catch (Exception e) {
 			System.out.println("selectNewProduct err : " + e);
-		} 
+		} finally{
+			try{if(rs!=null)rs.close();
+			if(pstmt!=null)pstmt.close();
+			if(con!=null) con.close();
+			}catch(Exception ex) {}
+		}
 		
 		
 		return list;
@@ -147,16 +167,15 @@ public class ProductDao {
 	
 	//전체 카테고리 리스트
 	public List<ProductDto> cateList(){
-		Connection conn = null;
 		String sql = "select * from category";
 		List<ProductDto> list = new ArrayList<ProductDto>();
 		
 		try {
 			Context init = new InitialContext();
-			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
-			conn = ds.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
+			ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				ProductDto dto = new ProductDto();
@@ -169,6 +188,11 @@ public class ProductDao {
 			
 		} catch (Exception e) {
 			System.out.println("cateList err : " + e);
+		} finally{
+			try{if(rs!=null)rs.close();
+			if(pstmt!=null)pstmt.close();
+			if(con!=null) con.close();
+			}catch(Exception ex) {}
 		}
 		return list;
 	}
@@ -176,19 +200,18 @@ public class ProductDao {
 	//대분류 카테고리 분류
 	public List<ProductDto> cate1Data(String ct_name1) throws SQLException{
 		System.out.println(ct_name1);
-		Connection conn = null;
 		String sql = "select * from product inner join category on p_cnum=ct_num where ct_name1=?";
 		List<ProductDto> list = new ArrayList<ProductDto>();
 		
 		try {
 			Context init = new InitialContext();
-			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+			ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
 			
 			if(ct_name1 !=null) {
-				conn = ds.getConnection();
-				PreparedStatement pstmt = conn.prepareStatement(sql);
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, ct_name1);
-				ResultSet rs = pstmt.executeQuery();
+				rs = pstmt.executeQuery();
 				System.out.println(rs);
 			
 				
@@ -218,7 +241,12 @@ public class ProductDao {
 			
 		} catch (Exception e) {
 			System.out.println("cate1Data err : " + e);
-		} 
+		} finally{
+			try{if(rs!=null)rs.close();
+			if(pstmt!=null)pstmt.close();
+			if(con!=null) con.close();
+			}catch(Exception ex) {}
+		}
 		
 		return list;
 	}
@@ -226,21 +254,20 @@ public class ProductDao {
 	    //소분류 카테고리 분류
 		public List<ProductDto> cate2Data(String ct_name2) throws SQLException{
 			System.out.println(ct_name2);
-			Connection conn = null;
 			String sql = "select * from product inner join category on p_cnum=ct_num where ct_name2=?";
 			List<ProductDto> list = new ArrayList<ProductDto>();
 			
 			try {
 				Context init = new InitialContext();
-				DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+				ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
 
 				if(ct_name2 !=null) {
-					conn = ds.getConnection();
-					PreparedStatement pstmt = conn.prepareStatement(sql);
+					con = ds.getConnection();
+					pstmt = con.prepareStatement(sql);
 					pstmt.setString(1, ct_name2);
-					ResultSet rs = pstmt.executeQuery();
+					rs = pstmt.executeQuery();
 					System.out.println(rs);
-				
+
 				while(rs.next()) {
 					ProductDto dto = new ProductDto();
 					dto.setP_code(rs.getInt("p_code"));
@@ -266,7 +293,12 @@ public class ProductDao {
 			  }
 			} catch (Exception e) {
 				System.out.println("cate2Data err : " + e);
-			} 
+			} finally{
+				try{if(rs!=null)rs.close();
+				if(pstmt!=null)pstmt.close();
+				if(con!=null) con.close();
+				}catch(Exception ex) {}
+			}
 			
 			return list;
 		}

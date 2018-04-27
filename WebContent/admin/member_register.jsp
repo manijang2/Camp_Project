@@ -54,7 +54,7 @@
 					<td class="td7"><input type="text" id="m_email" name="m_email" size="25" placeholder="홍길동 @daum.net" class="form-control input-sm" /></td>
 					<td><div style="width: 200px">
 							<select class="select form-control input-sm" name="sel" id="sel"
-								onclick="javascript:editEmail()">
+								onchange="javascript:editEmail()">
 								<option value="">직접입력</option>
 								<option value="@daum.net">@daum.net</option>
 								<option value="@naver.com">@naver.com</option>

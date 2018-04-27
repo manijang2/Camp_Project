@@ -49,7 +49,7 @@ function checkInput(form){
 	}else if(form.isIdChecked != null && form.isIdChecked.value != "checked"){
 		alert("중복체크해주세요");
 	}else if(!form.m_id.value.match(ptnId)){
-		alert("입력 양식에따라 작성하시오");
+		alert("아이디 입력 양식에따라 작성하시오");
 		form.m_id.focus();
 	}else if(form.m_pwd.value ==""){
 		alert("비밀번호를 입력하세요");
@@ -136,7 +136,7 @@ function checkId(){
 		return; 
 		
 	} else if(!regForm.m_id.value.match(pattern)){
-		alert("입력 양식에따라 작성하시오");
+		alert("아이디 입력 양식에따라 작성하시오");
 		regForm.m_id.focus();
 		return;
 		

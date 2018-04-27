@@ -11,28 +11,21 @@ import member.MemberDto;
 
 public class MemberDeleteAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception{
-		ActionForward forward = new ActionForward();
-		forward.setRedirect(false);
-		
+		ActionForward forward = new ActionForward();		
 		AdminDao adminrdao = new AdminDao();
-		
-		
 		request.setCharacterEncoding("utf-8");
+		
+		boolean isDeleteOk = false;
 		
 		if(request.getParameter("m_id") != null) {
 			MemberDto memberDto = new MemberDto();
 			memberDto.setM_id(request.getParameter("m_id"));
 			
-			boolean isDeleteOk = adminrdao.deleteMember(memberDto);
-			if(isDeleteOk){ 
-				forward.setPath("/admin/member_list.jsp");
-			} else {
-				forward.setPath("/admin/error.jsp");
-			}
+			isDeleteOk = adminrdao.deleteMember(memberDto);
+			
 		} else if(request.getParameterValues("check") != null) {
 			String[] values = request.getParameterValues("check");
 			
-			boolean isDeleteOk = false;
 			for (String id : values) {
 				MemberDto memberDto = new MemberDto();
 				memberDto.setM_id(id);
@@ -42,14 +35,16 @@ public class MemberDeleteAction implements Action {
 					break;
 				}
 			}
-			
-			if(isDeleteOk) {
-				forward.setPath("/admin/member_list.jsp");
-			} else {
-				forward.setPath("/admin/error.jsp");
-			}
 		}
 		
+
+		if(isDeleteOk) {
+			forward.setRedirect(true);
+			forward.setPath("/Camp_Project/admin/memberList.do");
+		} else {
+			forward.setRedirect(false);
+			forward.setPath("/admin/error.jsp");
+		}
 		
 		return forward;
 	}

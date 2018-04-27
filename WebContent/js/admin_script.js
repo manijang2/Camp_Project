@@ -25,7 +25,7 @@ function closeNav() {
 //회원수정 입력 체크 ----------------------------------------------------------
 function checkUpdateIn(){
 	if(checkInput(upForm)){
-		upForm.action = "../member/member_updateOk.jsp";	
+		upForm.action = "/Camp_Project/admin/memberUpdate.do";	
 		upForm.method="post";
 		upForm.submit(); 
 	}
@@ -49,7 +49,7 @@ function checkInput(form){
 	}else if(form.isIdChecked != null && form.isIdChecked.value != "checked"){
 		alert("중복체크해주세요");
 	}else if(!form.m_id.value.match(ptnId)){
-		alert("입력 양식에따라 작성하시오");
+		alert("아이디 입력 양식에따라 작성하시오");
 		form.m_id.focus();
 	}else if(form.m_pwd.value ==""){
 		alert("비밀번호를 입력하세요");
@@ -89,4 +89,107 @@ function checkInput(form){
 		return true;	
 	}
 	return false;
+}
+
+function confirmDelete() { //선택 삭제 
+	if(confirm("선택삭제 하시겠습니까?")) {
+		
+		var $form = $('form[name=memberForm]');
+		$form.attr('action', '/Camp_Project/admin/memberDelete.do');
+		$form.attr('method', 'post');
+
+	    $form.submit();
+	}
+}
+
+function confirmDeleteEach(id) { //개별 삭제 
+	if(confirm("탈퇴하시겠습니까?")) {
+		
+		var $form = $('<form></form>');
+		$form.attr('action', '/Camp_Project/admin/memberDelete.do');
+		$form.attr('method', 'post');
+		$form.appendTo('body');
+	     
+	    var idx = $('<input type="hidden" value="' + id + '" name="m_id">');
+	    $form.append(idx);
+
+	    $form.submit();
+	}
+}
+
+function clearMemberFiled() {
+	$('input[name=m_name]').val('');
+	$('input[name=m_email]').val('');
+	$('input[name=m_phone]').val('');
+	$('input[name=m_zipcode]').val('');
+	$('input[name=m_address]').val('');
+}
+
+
+
+//회원ID중복확인 ----------------------------------------------------
+function checkId(){	
+	var pattern = /^[A-Za-z0-9]{4,12}$/; //영문 대문자 소문자 숫자   가능 4~12 글자수 제한
+	if(regForm.m_id.value === ""){ 
+		alert("id를 입력하시오")
+		regForm.m_id.focus();
+		return; 
+		
+	} else if(!regForm.m_id.value.match(pattern)){
+		alert("아이디 입력 양식에따라 작성하시오");
+		regForm.m_id.focus();
+		return;
+		
+	} else { //중복검사 및 결과 표시를 위한 window open 
+		url = "/Camp_Project/admin/member_id_check.do?m_id=" + regForm.m_id.value;  
+		window.open(url,"id","toolbar=no,width=300,height=150," +
+				"top=200,left=300,status=yes,scrollbars=yes,menubar=no");
+	}
+}
+
+//회원등록 입력 체크 ----------------------------------------------------------
+function checkRegisterIn(){
+	
+	if(checkInput(regForm)){
+		regForm.action = "/Camp_Project/admin/member_register.do";	
+		regForm.method="post";
+		regForm.submit();
+	}
+}
+
+//이메일 자동 편집 ------------------------------------------------
+function editEmail(){
+	var email = regForm.m_email.value + regForm.sel.value;
+	var splits = email.split("@");
+	if(splits.length > 2) {
+		email = splits[0] + regForm.sel.value;
+	}		
+	regForm.m_email.value = email;
+}
+
+//전화번호 자동 편집 ------------------------------------------------
+function editPhone(form){ //keypress event(누른 후 입력됨, 즉 입력 전 이벤트 콜) 
+	var phoneNum = form.m_phone.value.replace(/-/g, ""); 
+	var length = phoneNum.length; 
+	if(phoneNum.charAt(1) > 1) { //일반전화(02~)
+		if(length <= 9) {// case1: 02-555-5555 (9자리: 2-3-4)
+			dash1 = 2; dash2 = 5;
+		} else {// case2: 02-5555-5555 (10자리: 2-4-4)
+			dash1 = 2; dash2 = 6;
+		}
+	} else { //핸드폰(01~)
+		if(length <= 10) {// case1: 010-555-5555 (10자리: 3-3-4) 
+			dash1 = 3; dash2 = 6;
+		} else {// case2: 010-5555-5555 (11자리 : 3-4-4) 
+			dash1 = 3; dash2 = 7;
+		}  
+	}
+	
+	if(dash1 < length && length <= dash2) { //대쉬가 1개인 경우 
+		phoneNum = phoneNum.slice(0,dash1) + "-" + phoneNum.slice(dash1,length+1);
+	} else if(length > dash2) { //대쉬가 2개인 경우 
+		phoneNum = phoneNum.slice(0,dash1) + "-" + phoneNum.slice(dash1,dash2) + "-" + phoneNum.slice(dash2,length+1);
+	}
+	
+	form.m_phone.value = phoneNum;
 }

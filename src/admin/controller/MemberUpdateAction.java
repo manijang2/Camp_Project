@@ -1,32 +1,42 @@
 package admin.controller;
 
-import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import admin.db.AdminDao;
 import main.controller.Action;
 import main.controller.ActionForward;
 import member.MemberDto;
-import member.MemberDao;
 
 
 public class MemberUpdateAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		ActionForward forward = new ActionForward();
-		MemberDao memberdao = new MemberDao();
+		forward.setRedirect(false);
 		
-		String id = request.getParameter("m_id"); 
-		MemberDto dto = memberdao.selectMemberById(id);
-		System.out.println(dto);
-		if(dto != null) {
+		AdminDao adminrdao = new AdminDao();
+		MemberDto memberDto = new MemberDto();
+		
+		request.setCharacterEncoding("utf-8");
+		memberDto.setM_pwd(request.getParameter("m_pwd"));
+		memberDto.setM_name(request.getParameter("m_name"));
+		memberDto.setM_email(request.getParameter("m_email"));
+		memberDto.setM_phone(request.getParameter("m_phone"));
+		memberDto.setM_zipcode(request.getParameter("m_zipcode"));
+		memberDto.setM_address(request.getParameter("m_address"));
+		memberDto.setM_id(request.getParameter("m_id"));
+		
+		
+		boolean isUpdateOk = adminrdao.updateMember(memberDto);
+		if(isUpdateOk){ 
+			forward.setRedirect(true);
+			forward.setPath("/Camp_Project/admin/memberList.do");
+		} else {
 			forward.setRedirect(false);
-			forward.setPath("/admin/admin_member_update.jsp");
-			request.setAttribute("dto", dto);
-			return forward;
-		}	
+			forward.setPath("/admin/error.jsp");
+		}
 		
-		return null;
+		return forward;
 	}
 }

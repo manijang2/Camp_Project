@@ -13,6 +13,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import member.MemberDto;
+import product.db.ProductDto;
 
 public class AdminDao {
 	
@@ -189,5 +190,29 @@ public class AdminDao {
 		
 		return isInserted;
 
+	}
+	
+	//전체상품 보기
+	public List<ProductDto> productAll() throws NamingException, SQLException{
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		String sql="select * from product";
+		
+		pstmt=con.prepareStatement(sql);
+		rs=pstmt.executeQuery();
+		
+		List<ProductDto> list = new ArrayList<ProductDto>();
+		while(rs.next()) {
+			ProductDto product=new ProductDto();
+			product.setP_code(Integer.parseInt(rs.getString("p_code")));
+			list.add(product);
+		}
+		
+		rs.close();
+		pstmt.close();
+		con.close();
+				
+		return list;
 	}
 }

@@ -9,8 +9,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>타이틀입력</title>
-<script src="../js/script_product.js"></script>
-<link href="../css/style.css" rel="stylesheet" type="text/css">
+<script src="/Camp_Project/js/product_script.js"></script>
+<link href="/Camp_Project/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <form name="pForm" action="../product/p_updateOk_admin.jsp" method="post">

@@ -71,7 +71,7 @@
 			<td class="td4"><input type="text" name="p_shippingfee" value="${p.p_shippingfee}" size="35" class="form-control input-sm"/></td>
 			<td class="td4"><input type="text" name="p_date" value="${fn:substring(p.p_date,0,10)}"  size="35" class="form-control input-sm"/></td>		
 			<td class="td4"><input type="text" name="p_cnum" value="${p.p_cnum}"  size="25" class="form-control input-sm"/></td>
-			<td class="td5"colspan = "3">
+			<td class="td5"colspan = "1">
 				<input type="submit" value="수정" class="btn btn-info btn-xs" />
 				<input type="reset" value="취소" class="btn btn-primary btn-xs" />
 				<input type="button" value="삭제" onclick="javascript:confirmDeleteEach('${p.p_code}')" class="btn btn-danger btn-xs"/>

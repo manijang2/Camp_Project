@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+
 import member.MemberDto;
 import product.db.ProductDto;
 
@@ -229,5 +230,26 @@ public class AdminDao {
 		con.close();
 				
 		return list;
+	}
+	
+	//[admin] 상품 등록 시 신규번호 
+	public int getNewCode() throws NamingException, SQLException{
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		
+		int newCode = -1;
+		pstmt=con.prepareStatement("select max(p_code) from product");
+		rs=pstmt.executeQuery();
+		
+		if(rs.next()) {
+			newCode = rs.getInt(1);
+		}
+
+		rs.close();
+		pstmt.close();
+		con.close();
+
+		return newCode + 1;
 	}
 }

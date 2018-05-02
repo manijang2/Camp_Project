@@ -22,6 +22,10 @@ public class ProductAllGetAction implements Action {
 		
 		List<ProductDto> list = admindao.productAll();
 		request.setAttribute("list", list);
+		if(request.getParameter("newInput").equals("y")) {
+			int newCode = admindao.getNewCode();
+			request.setAttribute("newCode", newCode);
+		}
 		forward.setRedirect(false);
 		forward.setPath("/admin/product_list.jsp");
 		

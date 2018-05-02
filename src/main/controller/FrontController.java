@@ -13,6 +13,7 @@ import admin.controller.MemberDeleteAction;
 import admin.controller.MemberGetAction;
 import admin.controller.MemberUpdateAction;
 import admin.product.controller.ProductAllGetAction;
+import admin.product.controller.ProductUpdateAction;
 
 public class FrontController extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
@@ -96,6 +97,14 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		} else if(command.equals("/admin/productUpdate.do") && request.getMethod().equals("POST")) {
+			action = new ProductUpdateAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}	
 		}
 		
 		else if (command.equals("/p_read.do")) {

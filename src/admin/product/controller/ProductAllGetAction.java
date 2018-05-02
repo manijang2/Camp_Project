@@ -22,7 +22,9 @@ public class ProductAllGetAction implements Action {
 		
 		List<ProductDto> list = admindao.productAll();
 		request.setAttribute("list", list);
-		if(request.getParameter("newInput").equals("y")) {
+		
+		String newInput = request.getParameter("newInput");
+		if(newInput != null && newInput.equals("y")) {
 			int newCode = admindao.getNewCode();
 			request.setAttribute("newCode", newCode);
 		}

@@ -27,11 +27,11 @@
 <h2>상품관리</h2>
 <hr>
 <br><Br><br>
-<form name="productForm">
+
 <table class="table table-striped table-hover member_table">
 	<tr>
 		<td colspan="14" style="text-align: right; background-color:white">
-			<input type="button" value="상품등록" onclick="location.href='/admin/productList.do?newInput=y'" class="btn btn-primary"/> 
+			<input type="button" value="상품등록" onclick="location.href='/Camp_Project/admin/productList.do?newInput=y'" class="btn btn-primary"/> 
 		</td>
 	</tr>
 	<tr class="align_Center active">
@@ -57,7 +57,7 @@
 		</tr>
 	</c:if>	
 	<c:forEach var="p" items="${list}" varStatus="s">
-	<form name="pForm" action="../product/p_updateOk_admin.jsp" method="post">
+	<form name="pForm_${p.p_code}" action="/Camp_Project/admin/productUpdate.do" method="post">
 		<tr>
 			<td class="td1 align_Center"><input type="checkbox" name="check" value="${p.p_code}"/></td>
 			<td class="td2"><input type="text" name="p_code" value="${p.p_code}" size="15" class="form-control input-sm" readonly/></td>
@@ -136,7 +136,7 @@
 		</td>
 	</tr>
 </table>
-</form>
+
 </div>
 <br><br><br><br>
 </div>

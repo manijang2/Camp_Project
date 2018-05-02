@@ -12,7 +12,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-
 import member.MemberDto;
 import product.db.ProductDto;
 
@@ -251,5 +250,42 @@ public class AdminDao {
 		con.close();
 
 		return newCode + 1;
+	}
+	
+	//[admin] 상품 수정 
+	public boolean updateProduct(ProductDto dto) throws SQLException, NamingException{
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		
+		// @Update("update product set p_name=#{p_name},p_price=#{p_price},p_stock=#{p_stock},p_brand=#{p_brand},p_origin=#{p_origin},p_mileagerate=#{p_mileagerate},p_date=#{p_date},p_shippingfee=#{p_shippingfee},p_sales=#{p_sales},p_cnum=#{p_cnum},p_image1=#{p_image1},p_image2=#{p_image2},p_image3=#{p_image3},p_image4=#{p_image4},p_info=#{p_info} where p_code=#{p_code}")
+		String sql="update product set "
+				+ "p_name=?,p_price=?,p_stock=?,p_brand=?,p_origin=?,p_mileagerate=?,p_date=?,p_shippingfee=?,p_sales=?,"
+				+ "p_cnum=?,p_image1=?,p_image2=?,p_image3=?,p_image4=?,p_info=? where p_code=?";
+			
+		pstmt=con.prepareStatement(sql);
+		pstmt.setString(1, dto.getP_name());
+		pstmt.setInt(2, dto.getP_price());
+		pstmt.setInt(3, dto.getP_stock());
+		pstmt.setString(4, dto.getP_brand());
+		pstmt.setString(5, dto.getP_origin());
+		pstmt.setFloat(6, dto.getP_mileagerate());
+		pstmt.setString(7, dto.getP_date());
+		pstmt.setInt(8, dto.getP_shippingfee());
+		pstmt.setInt(9, dto.getP_sales());
+		pstmt.setInt(10, dto.getP_cnum());
+		pstmt.setString(11, dto.getP_image1());
+		pstmt.setString(12, dto.getP_image2());
+		pstmt.setString(13, dto.getP_image3());
+		pstmt.setString(14, dto.getP_image4());
+		pstmt.setString(15, dto.getP_info());
+		pstmt.setInt(16, dto.getP_code());
+
+		int updateCnt = pstmt.executeUpdate();
+						
+		pstmt.close();
+		con.close();
+				
+		return (0 < updateCnt) ? true : false;
 	}
 }

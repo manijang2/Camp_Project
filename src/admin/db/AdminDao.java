@@ -206,6 +206,21 @@ public class AdminDao {
 		while(rs.next()) {
 			ProductDto product=new ProductDto();
 			product.setP_code(Integer.parseInt(rs.getString("p_code")));
+			product.setP_name(rs.getString("p_name"));
+			product.setP_price(Integer.parseInt(rs.getString("p_price")));
+			product.setP_brand(rs.getString("p_brand"));
+			product.setP_origin(rs.getString("p_origin"));
+			product.setP_stock(Integer.parseInt(rs.getString("p_stock")));
+			product.setP_sales(Integer.parseInt(rs.getString("p_sales")));
+			product.setP_mileagerate(Float.parseFloat(rs.getString("p_mileagerate")));
+			product.setP_shippingfee(Integer.parseInt(rs.getString("p_shippingfee")));
+			product.setP_date(rs.getString("p_date"));
+			product.setP_cnum(Integer.parseInt(rs.getString("p_cnum")));
+			product.setP_image1(rs.getString("p_image1"));
+			product.setP_image2(rs.getString("p_image2"));
+			product.setP_image3(rs.getString("p_image3"));
+			product.setP_image4(rs.getString("p_image4"));
+			
 			list.add(product);
 		}
 		

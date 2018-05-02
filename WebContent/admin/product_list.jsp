@@ -57,7 +57,35 @@
 		</tr>
 	</c:if>	
 	<c:forEach var="p" items="${list}" varStatus="s">
-	<jsp:include page="/admin/inc/p_updateDetail_admin.jsp?p_code=${p.p_code}"></jsp:include>
+	<form name="pForm" action="../product/p_updateOk_admin.jsp" method="post">
+		<tr>
+			<td class="td1 align_Center"><input type="checkbox" name="check" value="${p.p_code}"/></td>
+			<td class="td2"><input type="text" name="p_code" value="${p.p_code}" size="15" class="form-control input-sm" readonly/></td>
+			<td class="td3"><input type="text" name="p_name" value="${p.p_name}" size="60" class="form-control input-sm"/></td>
+			<td class="td4"><input type="text" name="p_price" value="${p.p_price}" size="35" class="form-control input-sm"/></td>
+			<td class="td4"><input type="text" name="p_brand" value="${p.p_brand}" size="40" class="form-control input-sm"/></td>
+			<td class="td4"><input type="text" name="p_origin" value="${p.p_origin}" size="30" class="form-control input-sm"/></td>
+			<td class="th2"><input type="text" name="p_stock" value="${p.p_stock}" size="25" class="form-control input-sm"/></td>
+			<td class="th2"><input type="text" name="p_sales" value="${p.p_sales}" size="25" class="form-control input-sm"/></td>
+			<td class="th2"><input type="text" name="p_mileagerate" value="${p.p_mileagerate}" size="25" class="form-control input-sm"/></td>
+			<td class="td4"><input type="text" name="p_shippingfee" value="${p.p_shippingfee}" size="35" class="form-control input-sm"/></td>
+			<td class="td4"><input type="text" name="p_date" value="${fn:substring(p.p_date,0,10)}"  size="35" class="form-control input-sm"/></td>		
+			<td class="td4"><input type="text" name="p_cnum" value="${p.p_cnum}"  size="25" class="form-control input-sm"/></td>
+			<td class="td5"colspan = "3">
+				<input type="submit" value="수정" class="btn btn-info btn-xs" />
+				<input type="reset" value="취소" class="btn btn-primary btn-xs" />
+				<input type="button" value="삭제" onclick="javascript:confirmDeleteEach('${p.p_code}')" class="btn btn-danger btn-xs"/>
+			</td>
+			<td class="td5">	
+				<input type="button" value="이미지 편집" class="btn btn-info btn-xs" onclick="javascript:editImages('${p.p_code}')" />
+				<input type="hidden" name="p_image1" value="${p.p_image1}"/>
+				<input type="hidden" name="p_image2" value="${p.p_image2}"/>
+				<input type="hidden" name="p_image3" value="${p.p_image3}"/>
+				<input type="hidden" name="p_image4" value="${p.p_image4}"/>
+				<%-- <input type="hidden" name="p_info" value="${p.p_info}" > --%>	
+			</td>
+		</tr>	
+	</form>
 	</c:forEach>
 	<c:set var="n" value="${param.newInput}"/>
 	<c:if  test="${!empty n}">

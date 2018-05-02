@@ -74,7 +74,7 @@
 			<td class="td5"colspan = "1">
 				<input type="submit" value="수정" class="btn btn-info btn-xs" />
 				<input type="reset" value="취소" class="btn btn-primary btn-xs" />
-				<input type="button" value="삭제" onclick="javascript:confirmDeleteEach('${p.p_code}')" class="btn btn-danger btn-xs"/>
+				<input type="button" value="삭제" onclick="confirmProdectDeleteEach('${p.p_code}')" class="btn btn-danger btn-xs"/>
 			</td>
 			<td class="td5">	
 				<input type="button" value="이미지 편집" class="btn btn-info btn-xs" onclick="javascript:editImages('${p.p_code}')" />

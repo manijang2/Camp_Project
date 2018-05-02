@@ -288,4 +288,20 @@ public class AdminDao {
 				
 		return (0 < updateCnt) ? true : false;
 	}
+	
+	public boolean deleteProduct(ProductDto dto)throws SQLException, NamingException{
+		
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		
+		pstmt=con.prepareStatement("DELETE FROM product WHERE p_code=?");
+		pstmt.setInt(1, dto.getP_code());
+		int deleteCnt = pstmt.executeUpdate();
+		
+		pstmt.close();
+		con.close();
+				
+		return (0 < deleteCnt) ? true : false;
+	}
 }

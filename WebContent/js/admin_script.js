@@ -91,6 +91,8 @@ function checkInput(form){
 	return false;
 }
 
+
+
 function confirmDelete() { //선택 삭제 
 	if(confirm("선택삭제 하시겠습니까?")) {
 		
@@ -192,4 +194,20 @@ function editPhone(form){ //keypress event(누른 후 입력됨, 즉 입력 전 
 	}
 	
 	form.m_phone.value = phoneNum;
+}
+
+
+//삭제 확인 ------------------------------------------------------
+function confirmProdectDeleteEach(code) { //개별 삭제 
+	if(confirm("삭제하시겠습니까?")) {
+		var $form = $('<form></form>');
+		$form.attr('action', '/Camp_Project/admin/productDelete.do');
+		$form.attr('method', 'post');
+		$form.appendTo('body');
+	     
+	    var idx = $('<input type="hidden" value="' + code + '" name="p_code">');
+	    $form.append(idx);
+
+	    $form.submit();
+	}
 }

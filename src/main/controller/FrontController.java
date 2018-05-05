@@ -13,6 +13,7 @@ import admin.controller.MemberDeleteAction;
 import admin.controller.MemberGetAction;
 import admin.controller.MemberUpdateAction;
 import admin.order.controller.OrderAllGetAction;
+import admin.order.controller.OrderUpdateAction;
 import admin.product.controller.ProductAllGetAction;
 import admin.product.controller.ProductDeleteAction;
 import admin.product.controller.ProductRegisterAction;
@@ -126,6 +127,14 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			}
 		} else if(command.equals("/admin/orderList.do") && request.getMethod().equals("GET")) {
 			action = new OrderAllGetAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/admin/orderUpdate.do") && request.getMethod().equals("POST")) {
+			action = new OrderUpdateAction();
 			
 			try {
 				forward = action.execute(request, response);

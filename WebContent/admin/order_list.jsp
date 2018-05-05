@@ -30,7 +30,6 @@
 <h2>주문 관리</h2>
 <hr>
 <br><Br><br>
-<form name="orderForm">
 <table class="table table-striped table-hover member_table">
 	<tr class="align_Center active">
 		<th class="th1" width="10" rowspan="2"><input name="allCheck" type="checkbox" onclick="javascript:selectCheckBoxAll()"/></th>
@@ -64,7 +63,7 @@
 	<c:forEach var="num" items="${list}" >
 
 	<c:set var="o" value="${num }"/>
-<form name="oForm${o.o_num}" id="oForm${o.o_num}" action="../order/order_updateOk_admin.jsp" method="post">
+<form name="oForm${o.o_num}" id="oForm${o.o_num}" action="/Camp_Project/admin/orderUpdate.do" method="post">
 <table class="table table-striped table-hover member_table">	
 	<tr>
 	 	<td class="td1 align_Center" rowspan="2"><input type="checkbox" name="check" value="${o.o_num}"/></td>	
@@ -77,7 +76,7 @@
 		<td class="th2"><input type="text" name="o_shippingfee" value="${o.o_shippingfee}" size="40" class="form-control input-sm"/></td>
 		<td class="th2"><input type="text" name="o_pay" value="${o.o_pay}" size="40" class="form-control input-sm"/></td>
 		<td class="td5" rowspan="2">
-			<input type="button" value="수정" onclick="javascript:confirmUpdateEach('oForm${o.o_num}')" class="btn btn-info btn-xs" />
+			<input type="button" value="수정" onclick="javascript:confirmOrderUpdateEach('oForm${o.o_num}')" class="btn btn-info btn-xs" />
 			<input type="reset" value="취소" class="btn btn-primary btn-xs" />
 			<input type="button" value="삭제" onclick="javascript:confirmDeleteEach('${o.o_num}')" class="btn btn-danger btn-xs"/>
 		</td>
@@ -120,7 +119,6 @@
 		</td>
 	</tr>
 </table>
-</form>
 </div>
 <br><br><br><br>
 </div>

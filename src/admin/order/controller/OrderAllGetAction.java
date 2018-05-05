@@ -26,7 +26,6 @@ public class OrderAllGetAction implements Action {
 		List<OrderDto> list = new ArrayList<OrderDto>();
 		for(Integer n : orderNums) {
 			OrderDto dto = (OrderDto)admindao.selectOrder(n);
-			System.out.println(dto);
 			list.add(dto);
 		}
 		
@@ -34,7 +33,7 @@ public class OrderAllGetAction implements Action {
 		request.setAttribute("list", list);
 
 		forward.setRedirect(false);
-		forward.setPath("/admin/admin_orderMgr.jsp");
+		forward.setPath("/admin/order_list.jsp");
 		
 		return forward;
 	}

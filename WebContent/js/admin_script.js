@@ -269,3 +269,10 @@ function editImages(code){
 	window.open(url,"id","toolbar=no,width=300,height=300," +
 			"top=200,left=300,status=yes,scrollbars=yes,menubar=no");
 }
+
+function confirmOrderUpdateEach(formName) { //개별 수정
+	var frm = document.getElementById(formName);
+	frm.action = "/Camp_Project/admin/orderUpdate.do";
+	frm.method = "post"; 
+	frm.submit(); 
+}

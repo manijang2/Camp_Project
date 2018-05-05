@@ -409,7 +409,6 @@ public class AdminDao {
 			dto.setO_num(Integer.parseInt(rs.getString("o_num")));
 			dto.setO_pcode(Integer.parseInt(rs.getString("o_pcode")));
 			dto.setP_name(rs.getString("p_name"));
-			System.out.println("o_num : " + o_num + ", " + rs.getString("p_price"));
 			dto.setP_price((Integer.parseInt(rs.getString("p_price"))));
 			dto.setO_quantity(Integer.parseInt(rs.getString("o_quantity")));
 			dto.setO_usemileage(Integer.parseInt(rs.getString("o_usemileage")));
@@ -430,5 +429,54 @@ public class AdminDao {
 		con.close();
 
 		return dto;
+	}
+	
+	//[admin]주문 삭제
+	/*
+	@Update("update orders set o_pcode=#{o_pcode},o_quantity=#{o_quantity},o_date=#{o_date},o_status=#{o_status}, "
+			+ "o_id=#{o_id},o_mname=#{o_mname},o_phone=#{o_phone},o_zipcode=#{o_zipcode},o_address=#{o_address},"
+			+ "o_usemileage=#{o_usemileage},o_pay=#{o_pay},o_shippingfee=#{o_shippingfee},o_message=#{o_message} "
+			+ "where o_num = #{o_num}")
+	*/
+	public boolean updateOrder(OrderDto dto) throws NamingException, SQLException{
+		
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		
+		String sql = "update orders set o_pcode=?,o_quantity=?,o_date=?,o_status=?,"
+		+ "o_id=?,o_mname=?,o_phone=?,o_zipcode=?,o_address=?,"
+		+ "o_usemileage=?,o_pay=?,o_shippingfee=?,o_message=? "
+		+ "where o_num = ?";
+		
+		/*
+		@Update("update orders set o_pcode=#{o_pcode},o_quantity=#{o_quantity},o_date=#{o_date},o_status=#{o_status}, "
+				+ "o_id=#{o_id},o_mname=#{o_mname},o_phone=#{o_phone},o_zipcode=#{o_zipcode},o_address=#{o_address},"
+				+ "o_usemileage=#{o_usemileage},o_pay=#{o_pay},o_shippingfee=#{o_shippingfee},o_message=#{o_message} "
+				+ "where o_num = #{o_num}")
+		*/
+		
+		pstmt=con.prepareStatement(sql);
+		pstmt.setInt(1, dto.getO_pcode());
+		pstmt.setInt(2, dto.getO_quantity());
+		pstmt.setString(3, dto.getO_date());
+		pstmt.setString(4, dto.getO_status());
+		pstmt.setString(5, dto.getO_id());
+		pstmt.setString(6, dto.getO_mname());
+		pstmt.setString(7, dto.getO_phone());
+		pstmt.setString(8, dto.getO_zipcode());
+		pstmt.setString(9, dto.getO_address());
+		pstmt.setInt(10, dto.getO_usemileage());
+		pstmt.setInt(11, dto.getO_pay());
+		pstmt.setInt(12, dto.getO_shippingfee());
+		pstmt.setString(13, dto.getO_message());
+		pstmt.setInt(14, dto.getO_num());
+
+		int updateCnt = pstmt.executeUpdate();
+						
+		pstmt.close();
+		con.close();
+				
+		return (0 < updateCnt) ? true : false;
 	}
 }

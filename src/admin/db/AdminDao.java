@@ -12,6 +12,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.sun.org.apache.xerces.internal.parsers.DTDParser;
+
 import member.MemberDto;
 import product.db.ProductDto;
 
@@ -261,7 +263,7 @@ public class AdminDao {
 		// @Update("update product set p_name=#{p_name},p_price=#{p_price},p_stock=#{p_stock},p_brand=#{p_brand},p_origin=#{p_origin},p_mileagerate=#{p_mileagerate},p_date=#{p_date},p_shippingfee=#{p_shippingfee},p_sales=#{p_sales},p_cnum=#{p_cnum},p_image1=#{p_image1},p_image2=#{p_image2},p_image3=#{p_image3},p_image4=#{p_image4},p_info=#{p_info} where p_code=#{p_code}")
 		String sql="update product set "
 				+ "p_name=?,p_price=?,p_stock=?,p_brand=?,p_origin=?,p_mileagerate=?,p_date=?,p_shippingfee=?,p_sales=?,"
-				+ "p_cnum=?,p_image1=?,p_image2=?,p_image3=?,p_image4=?,p_info=? where p_code=?";
+				+ "p_cnum=?,p_image1=?,p_image2=?,p_image3=?,p_image4=?,p_info=?,p_cnum=? where p_code=?";
 			
 		pstmt=con.prepareStatement(sql);
 		pstmt.setString(1, dto.getP_name());
@@ -279,7 +281,9 @@ public class AdminDao {
 		pstmt.setString(13, dto.getP_image3());
 		pstmt.setString(14, dto.getP_image4());
 		pstmt.setString(15, dto.getP_info());
-		pstmt.setInt(16, dto.getP_code());
+		pstmt.setInt(16, dto.getCt_num());
+		pstmt.setInt(17, dto.getP_code());
+		
 
 		int updateCnt = pstmt.executeUpdate();
 						

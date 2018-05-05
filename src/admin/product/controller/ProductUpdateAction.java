@@ -36,6 +36,7 @@ public class ProductUpdateAction implements Action {
 		productDto.setP_image4(request.getParameter("p_image4"));
 		productDto.setP_info(request.getParameter("p_info"));
 		productDto.setP_code(Integer.parseInt(request.getParameter("p_code")));
+		productDto.setCt_num(Integer.parseInt(request.getParameter("p_cnum")));
 		
 		boolean isUpdateOk = admindao.updateProduct(productDto);
 		if(isUpdateOk){ 

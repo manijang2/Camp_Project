@@ -259,3 +259,13 @@ function confirmProductDelete() { //복수 삭제
 	    $form.submit();
 	}
 }
+
+//이미지 편집 ------------------------------------------
+function editImages(code){ 
+	alert("기능구현중")
+	return false;
+	
+	url = "../product/p_updateImages_admin.jsp?p_code=" + code;  
+	window.open(url,"id","toolbar=no,width=300,height=300," +
+			"top=200,left=300,status=yes,scrollbars=yes,menubar=no");
+}

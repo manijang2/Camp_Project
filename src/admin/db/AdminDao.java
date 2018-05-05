@@ -13,6 +13,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import member.MemberDto;
+import order.db.OrderDto;
 import product.db.ProductDto;
 
 public class AdminDao {
@@ -344,5 +345,74 @@ public class AdminDao {
 		con.close();
 		
 		return (cnt > 0) ? true:false;
+	}
+	
+	//[admin]전체주문번호 보기		@Select("select o_num from orders")
+	public List<Integer> selectOrderNum() throws NamingException, SQLException{
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		
+		List<Integer> list = new ArrayList<Integer>();
+		int num = -1;
+		pstmt=con.prepareStatement("select o_num from orders");
+		rs=pstmt.executeQuery();
+		
+		while(rs.next()) {
+			list.add(rs.getInt(1));
+		}
+
+		rs.close();
+		pstmt.close();
+		con.close();
+
+		return list;
+	}
+	
+	//[admin] 주문 등록 시 신규번호
+	public int getNewOrderNum() throws NamingException, SQLException{
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		
+		int newCode = -1;
+		pstmt=con.prepareStatement("select max(p_code) from product");
+		rs=pstmt.executeQuery();
+		
+		if(rs.next()) {
+			newCode = rs.getInt(1);
+		}
+
+		rs.close();
+		pstmt.close();
+		con.close();
+
+		return newCode + 1;
+	}
+	
+	//[admin]주문 정보 보기
+	//[admin]주문정보	
+	// @Select("select * from orders left outer join orderstatus on o_status=os_num left outer join product on o_pcode=p_code left outer join member on o_id=m_id where o_num=#{o_num}")
+	public OrderDto selectOrder(String o_num) throws SQLException, NamingException{
+		
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		
+		OrderDto dto = new OrderDto();
+		int num = -1;
+		pstmt=con.prepareStatement("select * from orders left outer join orderstatus on o_status=os_num left outer join product on o_pcode=p_code left outer join member on o_id=m_id where o_num=?");
+		pstmt.setString(1, o_num);
+		rs=pstmt.executeQuery();
+		
+		if(rs.next()) {
+			
+		}
+
+		rs.close();
+		pstmt.close();
+		con.close();
+
+		return dto;
 	}
 }

@@ -12,8 +12,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.sun.org.apache.xerces.internal.parsers.DTDParser;
-
 import member.MemberDto;
 import product.db.ProductDto;
 
@@ -307,5 +305,44 @@ public class AdminDao {
 		con.close();
 				
 		return (0 < deleteCnt) ? true : false;
+	}
+	
+	//[admin] 상품 등록
+	public boolean insertProduct(ProductDto dto) throws NamingException, SQLException{
+		
+		System.out.println(dto);
+
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+
+		String sql="insert into product(p_code,p_name,p_price,p_stock,p_brand,p_origin,p_image1,p_image2,p_image3,p_image4,"
+				+ "p_info,p_mileagerate,p_shippingfee,p_sales,p_cnum,p_date) " + 
+		"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		
+		pstmt=con.prepareStatement(sql);
+		pstmt.setInt(1, dto.getP_code());
+		pstmt.setString(2, dto.getP_name());
+		pstmt.setInt(3, dto.getP_price());
+		pstmt.setInt(4, dto.getP_stock());
+		pstmt.setString(5, dto.getP_brand());
+		pstmt.setString(6, dto.getP_origin());
+		pstmt.setString(7, dto.getP_image1());
+		pstmt.setString(8, dto.getP_image2());
+		pstmt.setString(9, dto.getP_image3());
+		pstmt.setString(10, dto.getP_image4());
+		pstmt.setString(11, dto.getP_info());
+		pstmt.setFloat(12, dto.getP_mileagerate());
+		pstmt.setFloat(13, dto.getP_shippingfee());
+		pstmt.setInt(14, dto.getP_sales());
+		pstmt.setInt(15, dto.getP_cnum());
+		pstmt.setString(16, dto.getP_date());
+		
+		int cnt = pstmt.executeUpdate();
+		
+		pstmt.close();
+		con.close();
+		
+		return (cnt > 0) ? true:false;
 	}
 }

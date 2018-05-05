@@ -211,3 +211,32 @@ function confirmProdectDeleteEach(code) { //개별 삭제
 	    $form.submit();
 	}
 }
+
+//상품 신규 등록 ----------------------------------------------------
+function checkProductRegister(){
+	var form = document.getElementById("newForm"); 
+	var ptnNum = /^[0-9]{1,12}$/; // 숫자   가능 2~12 글자수 제한
+	if(form.p_name.value === ""){ 
+		alert("상품명을 입력하시오")
+		form.p_name.focus();
+		return; 
+	} else if(form.p_price.value === ""){ 
+		alert("상품 가격을 입력하시오")
+		form.p_price.focus();
+		return; 
+	} else if(!form.p_price.value.match(ptnNum)){ 
+		alert("가격을 숫자로 입력하시오")
+		form.p_price.focus();
+		return; 
+	} else if(form.p_stock.value === ""){ 
+		alert("재고량을 입력하시오")
+		form.p_stock.focus();
+		return; 
+	} else if(!form.p_stock.value.match(ptnNum)){ 
+		alert("재고량을 숫자로 입력하시오")
+		form.p_stock.focus();
+		return; 
+	} else {
+		form.submit(); 
+	}
+}

@@ -95,11 +95,11 @@
 		}
 	</script>
 		
-	<form name="pForm" id="newForm" action="../product/p_registerOk_admin.jsp" method="post">
+	<form name="pForm" id="newForm" action="/Camp_Project/admin/productInsert.do" method="post">
 	<table class="table table-striped table-hover member_table">	
 		<tr>
 			<td class="td1 align_Center"><input type="checkbox" name="check"/></td>
-			<td class="td2"><input type="text" name="p_code" value="${newInput }" size="15" class="form-control input-sm" readonly/></td>
+			<td class="td2"><input type="text" name="p_code" value="${newCode}" size="15" class="form-control input-sm" readonly/></td>
 			<td class="td3"><input type="text" id="newName" name="p_name" size="60" class="form-control input-sm"/></td>
 			<td class="td4"><input type="text" name="p_price" size="35" class="form-control input-sm"/></td>
 			<td class="td4"><input type="text" name="p_brand" size="40" class="form-control input-sm"/></td>
@@ -111,7 +111,7 @@
 			<td class="td4"><input type="text" name="p_date" size="35" class="form-control input-sm"/></td>		
 			<td class="td4"><input type="text" name="p_cnum" size="25" class="form-control input-sm"/></td>
 			<td class="td5">
-				<input type="button" value="등록" id="btnRSubmit" onclick="checkRegister()" class="btn btn-info btn-xs" />
+				<input type="button" value="등록" id="btnRSubmit" onclick="checkProductRegister()" class="btn btn-info btn-xs" />
 				<input type="reset" value="리셋" class="btn btn-primary btn-xs" />
 				<input type="button" value="삭제" onclick="../product/p_update_admin.jsp" class="btn btn-danger btn-xs"/>
 			</td>
@@ -125,17 +125,17 @@
 			</td>
 		</tr>	
 	</table>
-	</form>
 
 	</c:if>
 	<tr>	
-		<td colspan="5">
+		<td colspan="14">
 			<input type="button" value="취소" onclick="location.href='../admin/admin_productMgr.jsp'"  class="btn btn-danger"/> &nbsp;&nbsp;
 			<input type="button" value="삭제" onclick="javascript:confirmDelete()" class="btn btn-danger"/> &nbsp;&nbsp;
-			<input type="button" value="상품등록" onclick="location.href='../product/p_update_admin.jsp?newInput=y'" class="btn btn-primary"/> 
+			<input type="button" value="상품등록" onclick="location.href='/Camp_Project/admin/productList.do?newInput=y'" class="btn btn-primary"/> 
 		</td>
 	</tr>
 </table>
+</form>
 
 </div>
 <br><br><br><br>

@@ -14,6 +14,7 @@ import admin.controller.MemberGetAction;
 import admin.controller.MemberUpdateAction;
 import admin.product.controller.ProductAllGetAction;
 import admin.product.controller.ProductDeleteAction;
+import admin.product.controller.ProductRegisterAction;
 import admin.product.controller.ProductUpdateAction;
 
 public class FrontController extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
@@ -108,6 +109,14 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			}	
 		} else if(command.equals("/admin/productDelete.do") && request.getMethod().equals("POST")) {
 			action = new ProductDeleteAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/admin/productInsert.do") && request.getMethod().equals("POST")) {
+			action = new ProductRegisterAction();
 			
 			try {
 				forward = action.execute(request, response);

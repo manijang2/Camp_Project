@@ -113,7 +113,7 @@
 			<td class="td5">
 				<input type="button" value="등록" id="btnRSubmit" onclick="checkProductRegister()" class="btn btn-info btn-xs" />
 				<input type="reset" value="리셋" class="btn btn-primary btn-xs" />
-				<input type="button" value="삭제" onclick="../product/p_update_admin.jsp" class="btn btn-danger btn-xs"/>
+				<input type="button" value="삭제" onclick="location.href='/Camp_Project/admin/productList.do'" class="btn btn-danger btn-xs"/>
 			</td>
 			<td class="td5">	
 				<input type="button" value="이미지 편집" onclick="#" class="btn btn-info btn-xs"/>
@@ -130,7 +130,7 @@
 	<tr>	
 		<td colspan="14">
 			<input type="button" value="취소" onclick="location.href='../admin/admin_productMgr.jsp'"  class="btn btn-danger"/> &nbsp;&nbsp;
-			<input type="button" value="삭제" onclick="javascript:confirmDelete()" class="btn btn-danger"/> &nbsp;&nbsp;
+			<input type="button" value="삭제" onclick="javascript:confirmProductDelete()" class="btn btn-danger"/> &nbsp;&nbsp;
 			<input type="button" value="상품등록" onclick="location.href='/Camp_Project/admin/productList.do?newInput=y'" class="btn btn-primary"/> 
 		</td>
 	</tr>

@@ -240,3 +240,22 @@ function checkProductRegister(){
 		form.submit(); 
 	}
 }
+
+function confirmProductDelete() { //복수 삭제
+	
+	if(confirm("삭제하시겠습니까?")) {
+		var $form = $('<form></form>');
+		$form.attr('action', '/Camp_Project/admin/productDelete.do');
+		$form.attr('method', 'post');
+		$form.appendTo('body');
+		
+		$('input:checkbox[name="check"]').each(function() {
+		      if(this.checked){//checked 처리된 항목의 값
+		    	  var idx = $('<input type="check" value="' + this.value + '" name="check">');
+		    	  $form.append(idx);
+		      }
+		});
+	     
+	    $form.submit();
+	}
+}

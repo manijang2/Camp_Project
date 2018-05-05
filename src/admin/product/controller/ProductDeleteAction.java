@@ -24,21 +24,21 @@ public class ProductDeleteAction implements Action {
 			
 			isDeleteOk = admindao.deleteProduct(dto);
 			
-		}/* else if(request.getParameterValues("check") != null) {
+		} else if(request.getParameterValues("check") != null) {
 			String[] values = request.getParameterValues("check");
 			
-			for (String id : values) {
-				MemberDto memberDto = new MemberDto();
-				memberDto.setM_id(id);
+			for (String code : values) {
+				ProductDto productDto = new ProductDto();
 				
-				isDeleteOk = admindao.deleteMember(memberDto);
+				productDto.setP_code(Integer.parseInt(code));
+				
+				isDeleteOk = admindao.deleteProduct(productDto);
 				if(isDeleteOk == false){ 
 					break;
 				}
 			}
-		}*/
+		}
 		
-
 		if(isDeleteOk) {
 			forward.setRedirect(true);
 			forward.setPath("/Camp_Project/admin/productList.do");

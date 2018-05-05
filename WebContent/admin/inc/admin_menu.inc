@@ -4,8 +4,8 @@
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <a href="/Camp_Project/main.do">홈으로</a>
   <a href="/Camp_Project/admin/memberList.do">회원관리</a>	
-  		<a href="/Camp_Project/admin/member_register.do" class="subMenu">회원등록</a> 
-		<a href="/Camp_Project/admin/memberList.do" class="subMenu">회원수정/삭제</a> 	
+  		<a href="/Camp_Project/admin/productList.do?newInput=y" class="subMenu">회원등록</a> 
+		<a href="/Camp_Project/admin/productList.do" class="subMenu">회원수정/삭제</a> 	
   <a href="/Camp_Project/admin/productList.do">상품관리</a>
   		<a href="admin_productReg.jsp" class="subMenu">상품등록</a> 
 		<a href="admin_productMgr.jsp" class="subMenu">상품수정/삭제</a> 

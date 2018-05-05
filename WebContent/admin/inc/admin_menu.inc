@@ -9,7 +9,7 @@
   <a href="/Camp_Project/admin/productList.do">상품관리</a>
   		<a href="/Camp_Project/admin/productList.do?newInput=y" class="subMenu">상품등록</a> 
 		<a href="/Camp_Project/admin/productList.do" class="subMenu">상품수정/삭제</a> 
-  <a href="admin_orderMgr.jsp">주문관리</a>
+  <a href="/Camp_Project/admin/orderList.do">주문관리</a>
   		<a href="admin_orderReg.jsp" class="subMenu">주문등록</a>  
 		<a href="admin_orderMgr.jsp" class="subMenu">주문수정/삭제</a>
 		<a href="admin_orderGraph.jsp" class="subMenu">매출통계</a>

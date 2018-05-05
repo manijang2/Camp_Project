@@ -393,7 +393,7 @@ public class AdminDao {
 	//[admin]주문 정보 보기
 	//[admin]주문정보	
 	// @Select("select * from orders left outer join orderstatus on o_status=os_num left outer join product on o_pcode=p_code left outer join member on o_id=m_id where o_num=#{o_num}")
-	public OrderDto selectOrder(String o_num) throws SQLException, NamingException{
+	public OrderDto selectOrder(int o_num) throws SQLException, NamingException{
 		
 		Context init = new InitialContext();
 		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
@@ -402,11 +402,27 @@ public class AdminDao {
 		OrderDto dto = new OrderDto();
 		int num = -1;
 		pstmt=con.prepareStatement("select * from orders left outer join orderstatus on o_status=os_num left outer join product on o_pcode=p_code left outer join member on o_id=m_id where o_num=?");
-		pstmt.setString(1, o_num);
+		pstmt.setInt(1, o_num);
 		rs=pstmt.executeQuery();
 		
 		if(rs.next()) {
+			dto.setO_num(Integer.parseInt(rs.getString("o_num")));
+			dto.setO_pcode(Integer.parseInt(rs.getString("o_pcode")));
+			dto.setP_name(rs.getString("p_name"));
+			System.out.println("o_num : " + o_num + ", " + rs.getString("p_price"));
+			dto.setP_price((Integer.parseInt(rs.getString("p_price"))));
+			dto.setO_quantity(Integer.parseInt(rs.getString("o_quantity")));
+			dto.setO_usemileage(Integer.parseInt(rs.getString("o_usemileage")));
+			dto.setO_shippingfee(Integer.parseInt(rs.getString("o_shippingfee")));
+			dto.setO_pay(Integer.parseInt(rs.getString("o_pay")));
 			
+			dto.setO_date(rs.getString("o_date"));
+			dto.setO_id(rs.getString("o_id"));
+			dto.setO_mname(rs.getString("o_mname"));
+			dto.setO_phone(rs.getString("o_phone"));
+			dto.setO_zipcode(rs.getString("o_zipcode"));
+			dto.setO_address(rs.getString("o_address"));
+			dto.setO_message(rs.getString("o_message"));
 		}
 
 		rs.close();

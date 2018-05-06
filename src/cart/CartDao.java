@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import javax.sql.DataSource;
 import com.sun.javafx.geom.transform.GeneralTransform3D;
 
 import member.MemberDto;
+import order.OrderDto;
 import product.db.ProductDto;
 import cart.CartDto;
 
@@ -205,9 +207,11 @@ public class CartDao {
 			
 			if(pstmt.executeUpdate() > 0) {
 				b = true;		
+				System.out.println("상품 삭제 성공");
 				conn.commit();
 			} else {
 				b = false;
+				System.out.println("상품 삭제 실패");
 				conn.rollback();
 			}
 				
@@ -279,16 +283,36 @@ public class CartDao {
 			
 			return b;
 		}
+
+/*		private String nums;
+		
+		@Override
+		public String toString() {
+			
+			return nums;
+			
+		}*/
 		
 		// 카트 선택상품 삭제
 		public boolean selectDelete(String[] nums){
-			System.out.println(nums);
+			
+			List<CartDto> list = new ArrayList<CartDto>();
+			
+			//checkbox값 -> c_id 값 배열로 불러옴
+			System.out.println(Arrays.toString(nums));
+			
+			
+			System.out.println(Arrays.toString(nums).substring(1, Arrays.toString(nums).indexOf(']')));
+			String CheckNums = Arrays.toString(nums).substring(1, Arrays.toString(nums).indexOf(']'));
+	
+			
 			boolean b= false;
 			Connection conn = null;
 			PreparedStatement pstmt = null;
 			ResultSet rs = null;
 			
-			String sql = "<script> DELETE FROM CART WHERE C_NUM in <foreach item='c_num' collection='array' open='(' separator=',' close=')'> ? </foreach></script>";
+			
+			String sql = "DELETE FROM CART WHERE C_NUM in ("+CheckNums +")";
 			
 			
 			try {
@@ -297,15 +321,14 @@ public class CartDao {
 				DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/MariaDB");
 				conn = ds.getConnection();
 				pstmt = conn.prepareStatement(sql);
-				//pstmt.setS(1, nums);
-	
-			System.out.println(pstmt.executeUpdate());
 			
 			if(pstmt.executeUpdate() > 0) {
 				b = true;		
+				System.out.println("선택된 상품 삭제");
 				conn.commit();
 			} else {
 				b = false;
+				System.out.println("선택된 상품 실패");
 				conn.rollback();
 			}
 			
@@ -326,6 +349,126 @@ public class CartDao {
 			return b;
 		}
 		
+		// 바로주문 시 카트 출력
+		public CartDto orderOneRead(String c_id) throws SQLException{
+
+ 			CartDto dto = new CartDto();
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			System.out.println("c_id 값 테스트:"+c_id);
+			
+			
+			String sql = "select * from cart inner join product on p_code = c_pcode inner join member on c_id = m_id where c_num = (select max(c_num) from cart where c_id= ?)";
+		
+			try {
+
+				Context init = new InitialContext();
+				DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/MariaDB");
+				conn = ds.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, c_id);
+				rs = pstmt.executeQuery();
+
+				if(rs.next()) {
+					dto.setC_num(rs.getInt("c_num"));
+					dto.setC_pcode(rs.getInt("c_pcode"));
+					dto.setC_quantity(rs.getInt("c_quantity"));
+					dto.setC_id(rs.getString("c_id"));
+					dto.setP_code(rs.getInt("p_code"));
+					dto.setP_name(rs.getString("p_name"));
+					dto.setP_price(rs.getInt("p_price"));
+					dto.setP_stock(rs.getInt("p_stock"));
+					dto.setP_brand(rs.getString("p_brand"));
+					dto.setP_origin(rs.getString("p_origin"));
+					dto.setP_image1(rs.getString("p_image1"));
+					dto.setP_image2(rs.getString("p_image2"));
+					dto.setP_image3(rs.getString("p_image3"));
+					dto.setP_image4(rs.getString("p_image4"));
+					dto.setP_info(rs.getString("p_info"));
+					dto.setP_mileagerate(rs.getFloat("p_mileagerate"));
+					dto.setP_date(rs.getString("p_date"));
+					dto.setP_shippingfee(rs.getInt("p_shippingfee"));
+					dto.setP_sales(rs.getInt("p_sales"));
+					dto.setP_cnum(rs.getInt("p_cnum"));
+					/*dto.setM_id(rs.getString(rs.getString("m_id")));
+					dto.setM_pwd(rs.getString("m_pwd"));
+					dto.setM_name(rs.getString("m_name"));
+					dto.setM_email(rs.getString("m_email"));
+					dto.setM_phone(rs.getString("m_phone"));
+					dto.setM_zipcode(rs.getString("m_zipcode"));
+					dto.setM_address(rs.getString("m_address"));*/
+	
+				}
+				
+			} catch (Exception e) {
+				System.out.println("cartRead err : " + e);
+				
+			}  finally{
+				
+				try{
+					if(rs!=null)rs.close();	
+					if(pstmt!=null)pstmt.close();
+					if(conn!=null) conn.close();
+					
+					}catch(Exception ex) {
+						
+					}
+				}
+			return dto;
+		}
+		
+		
+		
+		public CartDto selectMember(String c_id) throws SQLException{
+
+			CartDto dto = new CartDto();
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			System.out.println("c_id 값 테스트:"+c_id);
+			
+			
+			String sql = "select * from member where m_id = (select distinct c_id from cart where c_id=?)";
+		
+			try {
+
+				Context init = new InitialContext();
+				DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/MariaDB");
+				conn = ds.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, c_id);
+				rs = pstmt.executeQuery();
+
+				if(rs.next()) {
+					dto.setM_id(rs.getString("m_id"));
+					dto.setM_pwd(rs.getString("m_pwd"));
+					dto.setM_name(rs.getString("m_name"));
+					dto.setM_email(rs.getString("m_email"));
+					dto.setM_phone(rs.getString("m_phone"));
+					dto.setM_zipcode(rs.getString("m_zipcode"));
+					dto.setM_address(rs.getString("m_address"));
+
+				}
+				
+			} catch (Exception e) {
+				System.out.println("selectMember err : " + e);
+				
+			}  finally{
+				
+				try{
+					if(rs!=null)rs.close();	
+					if(pstmt!=null)pstmt.close();
+					if(conn!=null) conn.close();
+					
+					}catch(Exception ex) {
+						
+					}
+				}
+			return dto;
+		}
 		
 	
 

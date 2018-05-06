@@ -7,6 +7,7 @@ public class CartDto {
 	private float p_mileagerate;
 	private String c_id, p_image1,p_name,m_name,m_phone,m_zipcode,m_address;
 	
+
 	//memberdto
 	private String m_id,m_pwd,m_email,m_grade;
 	private Timestamp m_date;

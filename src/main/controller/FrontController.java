@@ -43,9 +43,17 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("/admin/admin_memberMgr.jsp");
+			
 		} else if(command.equals("/admin/memberUpdate.do")) {
 			action = new MemberGetAction();
 			
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			  }
+			} else if(command.equals("/admin/memberUpdate_Proc.do")) {
+				action = new MemberUpdateAction();
 			try {
 				forward = action.execute(request, response);
 			}catch (Exception e) {
@@ -132,20 +140,39 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			//장바구니 품목 삭제
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/Camp_Project/cart/cart.jsp");
+			forward.setPath("/cart/cart_delete.jsp");
 			
 		} else if (command.equals("/cart_update.do")) {
 			//카트 - 주문 수량 변경버튼
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/Camp_Project/cart/cart.jsp");
+			forward.setPath("/cart/cart_update.jsp");
 			
 		} else if (command.equals("/cart_select_del.do")) {
-			//장바구니 -카트 선택품목 삭제 하기 (아직 안함)
+			//장바구니 -카트 선택품목 삭제 하기 
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/cart/cart.jsp");
-		} 
+			forward.setPath("/cart/cart_select_del.jsp");
+		
+		} else if (command.equals("/order_one.do")) {
+			//결제하기
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/order/order_one.jsp");
+		
+		} else if (command.equals("/order_proc.do")) {
+			//결제하기
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/order/order_proc.jsp");
+		
+			/*(선택결제 미완료)*/
+		} else if (command.equals("/cart_select_order.do")) {
+			//선택결제하기
+			forward = new ActionForward();
+			forward.setRedirect(false);
+			forward.setPath("/order/order_select.jsp");
+		}
 		
 		
 		if (forward != null) {

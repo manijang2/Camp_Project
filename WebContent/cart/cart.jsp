@@ -15,7 +15,7 @@ ArrayList<CartDto> list = (ArrayList)cartDao.cartRead(c_id);
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>장바구니</title>
-<script type="text/javascript" src="/Camp_Project/js/main_script3.js"></script>
+<script type="text/javascript" src="/Camp_Project/js/main_script.js"></script>
 <link href="/Camp_Project/css/board.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -98,7 +98,7 @@ ArrayList<CartDto> list = (ArrayList)cartDao.cartRead(c_id);
 </table>
 <div class="div">
  <input type="button" onclick="javasctipt:selectOrder()" value="선택상품 주문" class="btn btn-info btn-sm">
- <input type="button" onclick="javasctipt:selectDelete1()" value="선택상품 삭제" class="btn btn-danger btn-sm">
+ <input type="button" onclick="javasctipt:selectDelete()" value="선택상품 삭제" class="btn btn-danger btn-sm">
 </div>
 <br><br><br><br>
 <!-- 상품 주문하기 및 전체금액 표기 끝-->

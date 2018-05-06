@@ -50,7 +50,7 @@ function CountChange(count) {
 
 //상품 리스트 버튼 함수
 function goOrder() {
-	alert("asb");
+	alert("결제 페이지로 이동하시겠습니까?");
 	form.action = "/Camp_Project/order_one.do";
 	form.submit();
 }
@@ -116,14 +116,6 @@ function cartCount(productNum,action) {
 	}
 }
 
-//카트 선택 항목 삭제
-function selectDelete() { //선택 삭제 
-	if(confirm("삭제하시겠습니까?")) {
-		form.action = "/cart_select_del.do";
-		form.method = "post";
-		form.submit();
-	}
-}
 
 /*카트 수정 시 정규식*/
 
@@ -147,16 +139,34 @@ function allChk() {
 	var chk = form.check; // for로 돌린 체크박스
 	var allchk = form.allCheck.checked; // 모두체크용 체크박스 값
 	var tot = chk.length;
-	alert(tot);
-	alert(chk.length);
 	for (var i = 0; i < tot; i++) {
 		if (allchk)
 			chk[i].checked = true;
+
 		if (!allchk)
 			chk[i].checked = false;
 	}
 }
 
+//카트 선택항목 삭제
+function selectDelete() { //선택 삭제 
+	if(confirm("삭제하시겠습니까??->->")) {
+		
+		form.action = "/Camp_Project/cart_select_del.do";
+		form.method = "post";
+		form.submit();
+	}
+}
+
+
+function selectOrder() { //선택 결제 
+	if(confirm("선택항목을 바로 주문 하시겠습니까??")) {
+		
+		form.action = "/Camp_Project/cart_select_order.do";
+		form.method = "post";
+		form.submit();
+	}
+}
 
 
 function delevery(){

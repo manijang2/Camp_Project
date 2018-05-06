@@ -7,20 +7,22 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import admin.controller.MemberAllGetAction;
+import admin.controller.MemberCheckIDAction;
+import admin.controller.MemberDeleteAction;
 import admin.controller.MemberGetAction;
 import admin.controller.MemberUpdateAction;
-import product.db.ProductDao;
-import product.db.ProductDto;
+import admin.product.controller.ProductAllGetAction;
+import admin.product.controller.ProductDeleteAction;
+import admin.product.controller.ProductRegisterAction;
+import admin.product.controller.ProductUpdateAction;
 
 public class FrontController extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String RequestURI = request.getRequestURI();
-		System.out.println(RequestURI);
 		String contextPath = request.getContextPath();
-		System.out.println(contextPath);
 		String command = RequestURI.substring(contextPath.length());
-		System.out.println(command);
 		ActionForward forward = null;
 		Action action = null;
 
@@ -37,16 +39,84 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 		}  else if(command.equals("/admin/main.do")) {
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("/admin/admin_main.jsp");
+			forward.setPath("/admin/main.jsp");	
+		} else if(command.equals("/admin/memberList.do")) {
+			action = new MemberAllGetAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}	
 			
-		} else if(command.equals("/admin/memberMgr.do")) {
+		} else if(command.equals("/admin/memberUpdate.do") && request.getMethod().equals("GET")) {
+			action = new MemberGetAction();
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/admin/memberUpdate.do") && request.getMethod().equals("POST")) {
+			action = new MemberUpdateAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/admin/memberDelete.do") && request.getMethod().equals("POST")) {
+			action = new MemberDeleteAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/admin/member_register.do") && request.getMethod().equals("GET")) {
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("/admin/admin_memberMgr.jsp");
 			
 		} else if(command.equals("/admin/memberUpdate.do")) {
 			action = new MemberGetAction();
+			forward.setPath("/admin/member_register.jsp");
 			
+			
+		} else if(command.equals("/admin/member_register.do") && request.getMethod().equals("POST")) {
+			action = new admin.controller.MemberRegisterAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/admin/member_id_check.do") && request.getMethod().equals("GET")) {
+			action = new MemberCheckIDAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/admin/productList.do") && request.getMethod().equals("GET")) {
+			action = new ProductAllGetAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/admin/productUpdate.do") && request.getMethod().equals("POST")) {
+			action = new ProductUpdateAction();
+			
+			try {
+				forward = action.execute(request, response);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} else if(command.equals("/admin/productDelete.do") && request.getMethod().equals("POST")) {
+			action = new ProductDeleteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
@@ -59,8 +129,8 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
-		} else if(command.equals("/admin/memberUpdate_Proc.do")) {
-			action = new MemberUpdateAction();
+		} else if(command.equals("/admin/productInsert.do") && request.getMethod().equals("POST")) {
+			action = new ProductRegisterAction();
 			
 			try {
 				forward = action.execute(request, response);
@@ -101,7 +171,6 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			forward = new ActionForward();
 			forward.setRedirect(false);
 			forward.setPath("/product/p_cate2.jsp");
-
 		}
 		
 		/*------------------Member controller Start------------------*/
@@ -125,6 +194,16 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 				e.printStackTrace();
 			}
 					
+		}
+		
+		else if(command.equals("/member/MemberRegisterValidIdAction.do")) {
+			action=new MemberRegisterValidIdAction();
+			try {
+				forward = action.execute(request, response);
+				System.out.println("forward 성공");
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		/*------------------Member controller End------------------*/

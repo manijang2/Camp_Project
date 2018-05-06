@@ -9,12 +9,11 @@ import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import member.MemberDto;
-
-import java.sql.Timestamp;
-
+import product.db.ProductDto;
 
 public class AdminDao {
 	
@@ -24,252 +23,326 @@ public class AdminDao {
 	ResultSet rs=null;
 		
 		
-	public List<MemberDto> selectAll()throws SQLException{
-		String sql=null;
-		List<MemberDto> list = new ArrayList<MemberDto>();
+	public List<MemberDto> selectAll()throws SQLException, NamingException{
+
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		String sql="select * from member";
 		
-		try {
-			Context init = new InitialContext();
-			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
-			con=ds.getConnection();
-			sql="select * from member";
-			pstmt=con.prepareStatement(sql);
-			rs=pstmt.executeQuery();
+		pstmt=con.prepareStatement(sql);
+		rs=pstmt.executeQuery();
+		
+		List<MemberDto> list = new ArrayList<MemberDto>();
+		while(rs.next()) {
+			MemberDto member=new MemberDto();
+			member.setM_address(rs.getString("m_address"));
+			member.setM_date(rs.getTimestamp("m_date"));
+			member.setM_email(rs.getString("m_email"));
+			member.setM_grade(rs.getString("m_grade"));
+			member.setM_id(rs.getString("m_id"));
+			member.setM_mileage(rs.getInt("m_mileage"));
+			member.setM_name(rs.getString("m_name"));
+			member.setM_phone(rs.getString("m_phone"));
+			member.setM_pwd(rs.getString("m_pwd"));
+			member.setM_zipcode(rs.getString("m_zipcode"));
 			
-			while(rs.next()) {
-				MemberDto member=new MemberDto();
-				member.setM_address(rs.getString("m_address"));
-				member.setM_date(rs.getTimestamp("m_date"));
-				member.setM_email(rs.getString("m_email"));
-				member.setM_grade(rs.getString("m_grade"));
-				member.setM_id(rs.getString("m_id"));
-				member.setM_mileage(rs.getInt("m_mileage"));
-				member.setM_name(rs.getString("m_name"));
-				member.setM_phone(rs.getString("m_phone"));
-				member.setM_pwd(rs.getString("m_pwd"));
-				member.setM_zipcode(rs.getString("m_zipcode"));
-				
-				list.add(member);
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}	finally{
-			try{if(rs!=null)rs.close();
-			if(pstmt!=null)pstmt.close();
-			if(con!=null) con.close();
-			}catch(Exception ex) {}
+			list.add(member);
 		}
+		
+		rs.close();
+		pstmt.close();
+		con.close();
 				
 		return list;
 	}
 	
-	public MemberDto selectMemberById(String id)throws SQLException{
-		String sql=null;
-		MemberDto member=new MemberDto();
-
-		try {
-			Context init = new InitialContext();
-			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
-			con=ds.getConnection();
-			sql="select * from member where m_id=?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			rs=pstmt.executeQuery();
-			
-			if(rs.next()) {
-				member.setM_address(rs.getString("m_address"));
-				member.setM_date(rs.getTimestamp("m_date"));
-				member.setM_email(rs.getString("m_email"));
-				member.setM_grade(rs.getString("m_grade"));
-				member.setM_id(rs.getString("m_id"));
-				member.setM_mileage(rs.getInt("m_mileage"));
-				member.setM_name(rs.getString("m_name"));
-				member.setM_phone(rs.getString("m_phone"));
-				member.setM_pwd(rs.getString("m_pwd"));
-				member.setM_zipcode(rs.getString("m_zipcode"));
-								
-			}
-			}catch(Exception e) {
-				e.printStackTrace();
-			}	finally{
-				try{if(rs!=null)rs.close();
-				if(pstmt!=null)pstmt.close();
-				if(con!=null) con.close();
-				}catch(Exception ex) {}
-			}
-								
+	public MemberDto selectMemberById(String id)throws SQLException, NamingException{
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
 		
+		String sql="select * from member where m_id=?";
+		pstmt=con.prepareStatement(sql);
+		pstmt.setString(1, id);
+		rs=pstmt.executeQuery();
+		
+		MemberDto member = null;
+		if(rs.next()) {
+			member = new MemberDto();
+			member.setM_address(rs.getString("m_address"));
+			member.setM_date(rs.getTimestamp("m_date"));
+			member.setM_email(rs.getString("m_email"));
+			member.setM_grade(rs.getString("m_grade"));
+			member.setM_id(rs.getString("m_id"));
+			member.setM_mileage(rs.getInt("m_mileage"));
+			member.setM_name(rs.getString("m_name"));
+			member.setM_phone(rs.getString("m_phone"));
+			member.setM_pwd(rs.getString("m_pwd"));
+			member.setM_zipcode(rs.getString("m_zipcode"));
+		}
+
+		rs.close();
+		pstmt.close();
+		con.close();
+				
 		return member;
 	}
 	
-	public boolean insertMember(MemberDto dto)throws SQLException{
+	
+	public boolean updateMember(MemberDto dto)throws SQLException, NamingException{
+		
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		
+		String sql="update member set m_pwd=?,m_name=?,m_email=?,m_phone=?,"+
+			"m_zipcode=?,m_address=? where m_id=?";
+			
+		pstmt=con.prepareStatement(sql);
+		pstmt.setString(1, dto.getM_pwd());
+		pstmt.setString(2, dto.getM_name());
+		pstmt.setString(3, dto.getM_email());
+		pstmt.setString(4, dto.getM_phone());
+		pstmt.setString(5, dto.getM_zipcode());
+		pstmt.setString(6, dto.getM_address());
+		pstmt.setString(7, dto.getM_id());
+
+		int updateCnt = pstmt.executeUpdate();
+						
+		pstmt.close();
+		con.close();
+				
+		return (0 < updateCnt) ? true : false;
+	}
+
+	/*나중에 수정해야할거같음 -원본은 동적 sql사용 String ids[]*/
+	public boolean deleteMember(MemberDto dto)throws SQLException, NamingException{
+		
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		
+		pstmt=con.prepareStatement("delete from member where m_id=?");
+		pstmt.setString(1, dto.getM_id());
+		int deleteCnt = pstmt.executeUpdate();
+		
+		pstmt.close();
+		con.close();
+				
+		return (0 < deleteCnt) ? true : false;
+	}
+	
+
+	/*true : 아이디 존재함 */
+	
+	public boolean checkId(String id) throws NamingException, SQLException{
+		boolean  isIdChecked = false;
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		
+		pstmt=con.prepareStatement("select * from member where m_id=?");
+		pstmt.setString(1, id);
+		rs=pstmt.executeQuery();
+		
+		if(rs.next()) {
+			isIdChecked=true;
+		}
+
+		rs.close();
+		pstmt.close();
+		con.close();
+
+		return isIdChecked;
+	}
+	
+	public boolean insertMember(MemberDto dto)throws SQLException, NamingException{
 		boolean isInserted = false;
 		String sql=null;
 		
-		try {
-			con=ds.getConnection();
-			sql="insert into member values" + 
-			"(?,?,?,?,?,?,?,?,?,?)";
-			
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, dto.getM_id());
-			pstmt.setString(2, dto.getM_pwd());
-			pstmt.setString(3, dto.getM_name());
-			pstmt.setString(4, dto.getM_email());
-			pstmt.setString(5, dto.getM_phone());
-			pstmt.setString(6, dto.getM_zipcode());
-			pstmt.setString(7, dto.getM_address());
-			pstmt.setInt(8, dto.getM_mileage());
-			pstmt.setString(9, dto.getM_grade());
-			pstmt.setTimestamp(10, dto.getM_date());
-			
-			pstmt.executeUpdate();
-			
-			isInserted=true;
-			
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}	finally {
-			try {
-				if(pstmt!=null)pstmt.close();
-				if(con!=null)con.close();
-			}catch(Exception ex) {}
-		}
+		System.out.println(dto);
+		
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		sql="insert into member values" + 
+		"(?,?,?,?,?,?,?,?,?,?)";
+		
+		pstmt=con.prepareStatement(sql);
+		pstmt.setString(1, dto.getM_id());
+		pstmt.setString(2, dto.getM_pwd());
+		pstmt.setString(3, dto.getM_name());
+		pstmt.setString(4, dto.getM_email());
+		pstmt.setString(5, dto.getM_phone());
+		pstmt.setString(6, dto.getM_zipcode());
+		pstmt.setString(7, dto.getM_address());
+		pstmt.setInt(8, dto.getM_mileage());
+		pstmt.setString(9, dto.getM_grade());
+		pstmt.setTimestamp(10, dto.getM_date());
+		
+		pstmt.executeUpdate();
+		
+		isInserted=true;
+		
+		pstmt.close();
+		con.close();
 		
 		return isInserted;
 
 	}
 	
-	public boolean updateMember(MemberDto dto)throws SQLException{
-		boolean isUpdated = false;
-		String sql=null;
+	//전체상품 보기
+	public List<ProductDto> productAll() throws NamingException, SQLException{
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		String sql="select * from product";
 		
-		try {
-			con=ds.getConnection();
-			sql="update member set m_pwd=?,m_name=?,m_email=?,m_phone=?,"+
-			"m_zipcode=?,m_address=?,m_grade=?,m_mileage=? where m_id=?";
+		pstmt=con.prepareStatement(sql);
+		rs=pstmt.executeQuery();
+		
+		List<ProductDto> list = new ArrayList<ProductDto>();
+		while(rs.next()) {
+			ProductDto product=new ProductDto();
+			product.setP_code(Integer.parseInt(rs.getString("p_code")));
+			product.setP_name(rs.getString("p_name"));
+			product.setP_price(Integer.parseInt(rs.getString("p_price")));
+			product.setP_brand(rs.getString("p_brand"));
+			product.setP_origin(rs.getString("p_origin"));
+			product.setP_stock(Integer.parseInt(rs.getString("p_stock")));
+			product.setP_sales(Integer.parseInt(rs.getString("p_sales")));
+			product.setP_mileagerate(Float.parseFloat(rs.getString("p_mileagerate")));
+			product.setP_shippingfee(Integer.parseInt(rs.getString("p_shippingfee")));
+			product.setP_date(rs.getString("p_date"));
+			product.setP_cnum(Integer.parseInt(rs.getString("p_cnum")));
+			product.setP_image1(rs.getString("p_image1"));
+			product.setP_image2(rs.getString("p_image2"));
+			product.setP_image3(rs.getString("p_image3"));
+			product.setP_image4(rs.getString("p_image4"));
 			
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, dto.getM_pwd());
-			pstmt.setString(2, dto.getM_name());
-			pstmt.setString(3, dto.getM_email());
-			pstmt.setString(4, dto.getM_phone());
-			pstmt.setString(5, dto.getM_zipcode());
-			pstmt.setString(6, dto.getM_address());
-			pstmt.setInt(7, dto.getM_mileage());
-			pstmt.setString(8, dto.getM_grade());
-			pstmt.setTimestamp(9, dto.getM_date());
-			pstmt.setString(10, dto.getM_id());
+			list.add(product);
+		}
+		
+		rs.close();
+		pstmt.close();
+		con.close();
+				
+		return list;
+	}
+	
+	//[admin] 상품 등록 시 신규번호 
+	public int getNewCode() throws NamingException, SQLException{
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		
+		int newCode = -1;
+		pstmt=con.prepareStatement("select max(p_code) from product");
+		rs=pstmt.executeQuery();
+		
+		if(rs.next()) {
+			newCode = rs.getInt(1);
+		}
 
-			pstmt.executeUpdate();
-			isUpdated=true;
+		rs.close();
+		pstmt.close();
+		con.close();
+
+		return newCode + 1;
+	}
+	
+	//[admin] 상품 수정 
+	public boolean updateProduct(ProductDto dto) throws SQLException, NamingException{
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		
+		// @Update("update product set p_name=#{p_name},p_price=#{p_price},p_stock=#{p_stock},p_brand=#{p_brand},p_origin=#{p_origin},p_mileagerate=#{p_mileagerate},p_date=#{p_date},p_shippingfee=#{p_shippingfee},p_sales=#{p_sales},p_cnum=#{p_cnum},p_image1=#{p_image1},p_image2=#{p_image2},p_image3=#{p_image3},p_image4=#{p_image4},p_info=#{p_info} where p_code=#{p_code}")
+		String sql="update product set "
+				+ "p_name=?,p_price=?,p_stock=?,p_brand=?,p_origin=?,p_mileagerate=?,p_date=?,p_shippingfee=?,p_sales=?,"
+				+ "p_cnum=?,p_image1=?,p_image2=?,p_image3=?,p_image4=?,p_info=?,p_cnum=? where p_code=?";
+			
+		pstmt=con.prepareStatement(sql);
+		pstmt.setString(1, dto.getP_name());
+		pstmt.setInt(2, dto.getP_price());
+		pstmt.setInt(3, dto.getP_stock());
+		pstmt.setString(4, dto.getP_brand());
+		pstmt.setString(5, dto.getP_origin());
+		pstmt.setFloat(6, dto.getP_mileagerate());
+		pstmt.setString(7, dto.getP_date());
+		pstmt.setInt(8, dto.getP_shippingfee());
+		pstmt.setInt(9, dto.getP_sales());
+		pstmt.setInt(10, dto.getP_cnum());
+		pstmt.setString(11, dto.getP_image1());
+		pstmt.setString(12, dto.getP_image2());
+		pstmt.setString(13, dto.getP_image3());
+		pstmt.setString(14, dto.getP_image4());
+		pstmt.setString(15, dto.getP_info());
+		pstmt.setInt(16, dto.getCt_num());
+		pstmt.setInt(17, dto.getP_code());
+		
+
+		int updateCnt = pstmt.executeUpdate();
 						
-		}catch(Exception e) {
-			e.printStackTrace();
-		}	finally {
-			try {
-				if(pstmt!=null)pstmt.close();
-				if(con!=null)con.close();
-			}catch(Exception ex) {}
-		}
+		pstmt.close();
+		con.close();
 				
-		return isUpdated;
-
+		return (0 < updateCnt) ? true : false;
 	}
-
-	/*나중에 수정해야할거같음 -원본은 동적 sql사용 String ids[]*/
-	public boolean deleteMember(String id)throws SQLException{
-		boolean isDeleted = false;
-		String sql=null;
+	
+	public boolean deleteProduct(ProductDto dto)throws SQLException, NamingException{
 		
-		try {
-			con=ds.getConnection();
-			sql="delete from member where m_id=?";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1, id);
-			pstmt.executeUpdate();
-			isDeleted=true;
-		}catch(Exception e) {
-			e.printStackTrace();
-		}	finally {
-			try {
-				if(pstmt!=null)pstmt.close();
-				if(con!=null)con.close();
-			}catch(Exception ex) {}
-		}
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
+		
+		pstmt=con.prepareStatement("DELETE FROM product WHERE p_code=?");
+		pstmt.setInt(1, dto.getP_code());
+		int deleteCnt = pstmt.executeUpdate();
+		
+		pstmt.close();
+		con.close();
 				
-		return isDeleted;
-		
+		return (0 < deleteCnt) ? true : false;
 	}
 	
-	/*기존방식과 다르게 하였음*/ 
-	public boolean checkLogin(String id, String pw){
-		boolean isLoginChecked = false;
-		String sql=null;
-		System.out.println("id/pw : memberdao "+id + " "+ pw);
+	//[admin] 상품 등록
+	public boolean insertProduct(ProductDto dto) throws NamingException, SQLException{
 		
-		try {
-			Context init = new InitialContext();
-			ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
-			con=ds.getConnection();
-			sql="select * from member where m_id=? ";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1,id);
-			rs=pstmt.executeQuery();
-			System.out.println(sql);
+		System.out.println(dto);
 
-			
-			if(rs.next()) {
-				String memberpw = rs.getString("m_pwd");
-				System.out.println(memberpw);
+		Context init = new InitialContext();
+		DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+		con=ds.getConnection();
 
-				if(memberpw.equals(pw)) {
-					isLoginChecked=true;
-				}
-			}	
-		}catch(Exception e) {
-			e.printStackTrace();
-		}	finally{
-			try{if(rs!=null)rs.close();
-			if(pstmt!=null)pstmt.close();
-			if(con!=null) con.close();
-			}catch(Exception ex) {}
-		}
-			
+		String sql="insert into product(p_code,p_name,p_price,p_stock,p_brand,p_origin,p_image1,p_image2,p_image3,p_image4,"
+				+ "p_info,p_mileagerate,p_shippingfee,p_sales,p_cnum,p_date) " + 
+		"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
-		return isLoginChecked;
-
+		pstmt=con.prepareStatement(sql);
+		pstmt.setInt(1, dto.getP_code());
+		pstmt.setString(2, dto.getP_name());
+		pstmt.setInt(3, dto.getP_price());
+		pstmt.setInt(4, dto.getP_stock());
+		pstmt.setString(5, dto.getP_brand());
+		pstmt.setString(6, dto.getP_origin());
+		pstmt.setString(7, dto.getP_image1());
+		pstmt.setString(8, dto.getP_image2());
+		pstmt.setString(9, dto.getP_image3());
+		pstmt.setString(10, dto.getP_image4());
+		pstmt.setString(11, dto.getP_info());
+		pstmt.setFloat(12, dto.getP_mileagerate());
+		pstmt.setFloat(13, dto.getP_shippingfee());
+		pstmt.setInt(14, dto.getP_sales());
+		pstmt.setInt(15, dto.getP_cnum());
+		pstmt.setString(16, dto.getP_date());
+		
+		int cnt = pstmt.executeUpdate();
+		
+		pstmt.close();
+		con.close();
+		
+		return (cnt > 0) ? true:false;
 	}
-
-	/*true : 아이디 존재함 */
-	
-	public boolean checkId(String id){
-		boolean  isIdChecked = false;
-		String sql=null;
-		
-		try {
-			con=ds.getConnection();
-			sql="select * from member where m_id=? ";
-			pstmt=con.prepareStatement(sql);
-			pstmt.setString(1,id);
-			rs=pstmt.executeQuery();
-			
-			if(rs.next()) {
-				isIdChecked=true;
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}	finally{
-			try{if(rs!=null)rs.close();
-			if(pstmt!=null)pstmt.close();
-			if(con!=null) con.close();
-			}catch(Exception ex) {}
-		}
-			
-		return isIdChecked;
-	}
-	
-	
-
 }

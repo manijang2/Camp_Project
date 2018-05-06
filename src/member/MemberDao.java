@@ -254,6 +254,8 @@ public class MemberDao {
 		String sql=null;
 		
 		try {
+			Context init = new InitialContext();
+			ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
 			con=ds.getConnection();
 			sql="select * from member where m_id=? ";
 			pstmt=con.prepareStatement(sql);

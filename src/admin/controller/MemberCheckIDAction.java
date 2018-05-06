@@ -2,30 +2,29 @@ package admin.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import admin.db.AdminDao;
 import main.controller.Action;
 import main.controller.ActionForward;
+import member.MemberDao;
 import member.MemberDto;
 
-
-public class MemberGetAction implements Action {
+public class MemberCheckIDAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		ActionForward forward = new ActionForward();
 		AdminDao admindao = new AdminDao();
 		
-		request.setCharacterEncoding("utf-8");
+		String m_id = request.getParameter("m_id");
+		System.out.println("m_id : " + m_id);
+		boolean check=admindao.checkId(m_id);
+		System.out.println("check : " + check);
 		
-		MemberDto dto = admindao.selectMemberById(request.getParameter("m_id"));
-		if(dto == null) {
-			forward.setRedirect(false);
-			forward.setPath("/admin/error.jsp");
-		} else {
-			request.setAttribute("dto", dto);
-			forward.setRedirect(false);
-			forward.setPath("/admin/member_update.jsp");
-		}
+		request.setAttribute("id", m_id);
+		request.setAttribute("check", check);
+		forward.setPath("/admin/member_id_check.jsp");
 		
 		return forward;
 	}
 }
+

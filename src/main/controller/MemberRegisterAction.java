@@ -17,6 +17,8 @@ public class MemberRegisterAction implements Action{
 		MemberDto memberdto = new MemberDto();
 		MemberDao memberdao = new MemberDao();
 		
+		request.setCharacterEncoding("utf-8");
+		
 		memberdto.setM_id(request.getParameter("m_id"));
 		memberdto.setM_pwd(request.getParameter("m_pwd"));
 		memberdto.setM_name(request.getParameter("m_name"));

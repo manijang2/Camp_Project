@@ -30,7 +30,7 @@ public class MemberUpdateAction_m  implements Action{
 		
 		isPwd = memberdao.checkLogin(request.getParameter("m_id"), request.getParameter("m_pwd"));
 		
-		if(isPwd ==true) {
+		
 		memberdao.updateMember(memberdto);
 		
 		response.setContentType("text/html; charset=UTF-8");
@@ -40,7 +40,7 @@ public class MemberUpdateAction_m  implements Action{
 		out.println("location.href='../main.do';");
 		out.println("</script>");
 		out.close();
-		}
+		
 		
 
 		return forward;

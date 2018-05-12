@@ -18,7 +18,7 @@ function doLogin(){
 function checkUpdateIn(){
 	console.log("업데이트 함수 호출");
 	if(checkUpdateInput(upForm)){
-		upForm.action = "/member/MemberUpdateAction.do";	
+		upForm.action = "./MemberUpdateAction_m.do";	
 		upForm.method="post";
 		upForm.submit(); 
 	}

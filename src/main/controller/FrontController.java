@@ -190,6 +190,15 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/member/MemberUpdateAction.do")) {
+			action= new MemberUpdateAction_m();
+			try {
+				forward = action.execute(request, response);
+				System.out.println("forward 성공");
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+					
 		}
 		
 		/*------------------Member controller End------------------*/

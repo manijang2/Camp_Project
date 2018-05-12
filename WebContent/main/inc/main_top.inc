@@ -30,7 +30,7 @@ if(memid == null){
 		mem2 = "<a href='/web_project/cart/cart.jsp'>장바구니</a>";
 		mem3 = "<a href='/web_project/order/order.jsp'>주문조회</a>";
 		mem4 = "<a href='javascript:delevery()'>배송조회</a>";
-		mem1 = "<a href='/web_project/member/member_update.jsp?m_id="+memid+"'>회원정보 수정</a>";
+		mem1 = "<a href='/Camp_Project/member/member_update.jsp'>회원정보 수정</a>";
 	}
 }
 %>

@@ -41,7 +41,7 @@
 			<tr>
 				<td colspan="2">
 				<input type="button" value="로그인" id="btnlogin" onclick="javascript:doLogin()" class="btn btn-primary btn-sm"/> &nbsp;&nbsp;
-				<input type="button" value="회원가입" id="btnNewMember" onclick="javascript:window.location='./MemberRegister.me'" class="btn btn-danger btn-sm">			
+				<input type="button" value="회원가입" id="btnNewMember" onclick="javascript:window.location='/Camp_Project/member/member_register.jsp'" class="btn btn-danger btn-sm">			
 				</td>
 			</tr>
 		</table>

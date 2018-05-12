@@ -14,6 +14,16 @@ function doLogin(){
 	}
 }
 
+//회원정보 수청 --------------------------
+function checkUpdateIn(){
+	console.log("업데이트 함수 호출");
+	if(checkUpdateInput(upForm)){
+		upForm.action = "/member/MemberUpdateAction.do";	
+		upForm.method="post";
+		upForm.submit(); 
+	}
+}
+
 //회원ID중복확인 ----------------------------------------------------
 function checkId(){	
 	var pattern = /^[A-Za-z0-9]{4,12}$/; //영문 대문자 소문자 숫자   가능 4~12 글자수 제한
@@ -128,6 +138,8 @@ function checkRegisterIn(){
 }
 
 
+
+
 //입력 체크 -------------------------------------------------------------
 function checkInput(form){
 	// ID : 영문 대문자 소문자 숫자   가능 4~12 글자수 제한
@@ -159,6 +171,56 @@ function checkInput(form){
 		alert("비밀번호가 틀립니다");
 		form.rem_pwd.value = ""; 
 		form.rem_pwd.focus();
+	}else if(form.m_name.value ==""){
+		alert("이름을 입력하세요");
+		form.m_name.focus();
+	}else if(!form.m_name.value.match(ptnName)){
+		alert("이름 입력양식에 맞게 작성해주세요");
+		form.m_name.focus();
+	}else if(form.m_email.value ==""){
+		alert("이메일을 입력하세요");
+		form.m_email.focus();
+	}else if(!form.m_email.value.match(ptnEmail)){
+		alert("메일 형식이 맞지않습니다");
+		form.m_email.focus();
+	}else if(form.m_phone.value ==""){
+		alert("핸드폰 번호를 입력하세요");
+		form.m_phone.focus();
+	}else if(!form.m_phone.value.match(ptnPhone)){
+		alert("핸드폰 번호양식에 맞지않습니다");
+		form.m_phone.focus();
+	}else if(form.m_zipcode.value ==""){
+		alert("집주소를 입력하세요");
+		form.m_zipcode.focus();
+	}else if(form.m_address.value ==""){
+		alert("주소를 입력하세요");
+		form.m_address.focus();
+	}else { 
+		return true;	
+	}
+	return false;
+}
+
+//수정 시 입력 체크
+function checkUpdateInput(form){
+	
+	console.log("업데이트 양식 체크");
+	
+	//Password : 6~16자 영문대소문자, 숫자, 특수문자 혼합하여 사용
+	var ptnPwd = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-]|.*[0-9]).{4,24}$/;
+	//Name : 한글10자, 영문20자, 한글,영문,숫자 사용가능
+	var ptnName =/^[0-9a-zA-Z가-힣]{2,20}$/; 
+	//Email : 숫자 영문 대소문자 특수문자 -_\.ㅎ
+	var ptnEmail = /^[A-Za-z0-9]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/; 
+	//Phone : 010-1010-1010 
+	var ptnPhone = /^\d{3}-\d{3,4}-\d{4}$/;
+	
+	if(form.m_pwd.value ==""){
+		alert("비밀번호를 입력하세요");
+		form.m_pwd.focus();
+	}else if(!form.m_pwd.value.match(ptnPwd)){
+		alert("비번 입력양식에 맞게 작성해주세요");
+		form.m_pwd.focus();
 	}else if(form.m_name.value ==""){
 		alert("이름을 입력하세요");
 		form.m_name.focus();

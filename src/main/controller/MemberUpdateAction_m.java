@@ -10,12 +10,13 @@ import member.MemberDto;
 import member.MemberDao;
 
 
-public class MemberRegisterAction implements Action{
+public class MemberUpdateAction_m  implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		HttpSession session = request.getSession();
 		ActionForward forward = new ActionForward();
 		MemberDto memberdto = new MemberDto();
 		MemberDao memberdao = new MemberDao();
+		boolean isPwd =false;
 		
 		request.setCharacterEncoding("utf-8");
 		
@@ -26,19 +27,21 @@ public class MemberRegisterAction implements Action{
 		memberdto.setM_phone(request.getParameter("m_phone"));
 		memberdto.setM_zipcode(request.getParameter("m_zipcode"));
 		memberdto.setM_address(request.getParameter("m_address"));
-		memberdto.setM_grade("일반회원");
-		memberdto.setM_mileage(0);
-		memberdto.setM_date(new Timestamp(System.currentTimeMillis()));
 		
-		memberdao.insertMember(memberdto);
+		isPwd = memberdao.checkLogin(request.getParameter("m_id"), request.getParameter("m_pwd"));
+		
+		if(isPwd ==true) {
+		memberdao.updateMember(memberdto);
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
-		out.println("alert('회원가입에 성공하였습니다.');");
+		out.println("alert('회원정보수정에 성공하였습니다.');");
 		out.println("location.href='../main.do';");
 		out.println("</script>");
 		out.close();
+		}
+		
 
 		return forward;
 	}

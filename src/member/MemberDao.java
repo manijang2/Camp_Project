@@ -153,7 +153,7 @@ public class MemberDao {
 		try {
 			con=ds.getConnection();
 			sql="update member set m_pwd=?,m_name=?,m_email=?,m_phone=?,"+
-			"m_zipcode=?,m_address=?,m_grade=?,m_mileage=? where m_id=?";
+			"m_zipcode=?,m_address=? where m_id=?";
 			
 			pstmt=con.prepareStatement(sql);
 			pstmt.setString(1, dto.getM_pwd());
@@ -162,10 +162,7 @@ public class MemberDao {
 			pstmt.setString(4, dto.getM_phone());
 			pstmt.setString(5, dto.getM_zipcode());
 			pstmt.setString(6, dto.getM_address());
-			pstmt.setInt(7, dto.getM_mileage());
-			pstmt.setString(8, dto.getM_grade());
-			pstmt.setTimestamp(9, dto.getM_date());
-			pstmt.setString(10, dto.getM_id());
+			pstmt.setString(7, dto.getM_id());
 
 			pstmt.executeUpdate();
 			isUpdated=true;

@@ -16,12 +16,20 @@ function doLogin(){
 
 //회원정보 수청 --------------------------
 function checkUpdateIn(){
-	console.log("업데이트 함수 호출");
+
 	if(checkUpdateInput(upForm)){
 		upForm.action = "./MemberUpdateAction_m.do";	
 		upForm.method="post";
 		upForm.submit(); 
 	}
+}
+
+//회원탈퇴--------------------------------------------------------
+function confirmDeleteEach(){
+	var id = document.getElementById('m_id').value;
+	var url='./MemberDeleteAction_m.do?m_id=' + encodeURI(id);
+	window.location.href=url;
+	
 }
 
 //회원ID중복확인 ----------------------------------------------------

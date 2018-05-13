@@ -213,6 +213,15 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 				e.printStackTrace();
 			}
 					
+		}else if(command.equals("/member/MemberDeleteAction_m.do")) {
+			action= new MemberDeleteAction();
+			try {
+				forward = action.execute(request, response);
+				System.out.println("forward 성공");
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+					
 		}
 		
 		/*------------------Member controller End------------------*/

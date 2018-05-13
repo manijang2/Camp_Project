@@ -41,7 +41,7 @@
 					</tr>
 					<tr>
 						<th class="th6">아이디</th>
-						<td class="td7"> &nbsp; ${dto.m_id}<input type="hidden" name="m_id" value="${dto.m_id}"/></td>
+						<td class="td7"> &nbsp; ${dto.m_id}<input type="hidden" id="m_id" name="m_id" value="${dto.m_id}"/></td>
 						<td class="td8"></td>
 						
 					</tr>

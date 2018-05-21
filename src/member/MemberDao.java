@@ -21,7 +21,6 @@ import java.sql.Timestamp;
 
 public class MemberDao {
 	
-	DataSource ds;
 	Connection con=null;
 	PreparedStatement pstmt = null;
 	ResultSet rs=null;
@@ -151,6 +150,8 @@ public class MemberDao {
 		String sql=null;
 		
 		try {
+			Context init = new InitialContext();
+			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
 			con=ds.getConnection();
 			sql="update member set m_pwd=?,m_name=?,m_email=?,m_phone=?,"+
 			"m_zipcode=?,m_address=? where m_id=?";
@@ -186,6 +187,8 @@ public class MemberDao {
 		String sql=null;
 		
 		try {
+			Context init = new InitialContext();
+			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
 			con=ds.getConnection();
 			sql="delete from member where m_id=?";
 			pstmt=con.prepareStatement(sql);
@@ -213,7 +216,7 @@ public class MemberDao {
 		
 		try {
 			Context init = new InitialContext();
-			ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
 			con=ds.getConnection();
 			sql="select * from member where m_id=? ";
 			pstmt=con.prepareStatement(sql);
@@ -252,7 +255,7 @@ public class MemberDao {
 		
 		try {
 			Context init = new InitialContext();
-			ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
 			con=ds.getConnection();
 			sql="select * from member where m_id=? ";
 			pstmt=con.prepareStatement(sql);

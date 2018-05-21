@@ -29,7 +29,7 @@ public class MemberDeleteAction_m implements Action {
 			
 
 			forward.setRedirect(true);
-			forward.setPath("http://localhost:8088/Camp_Project/main/main.jsp");
+			forward.setPath("../main.do");
 			return forward;
 			
 		}else {

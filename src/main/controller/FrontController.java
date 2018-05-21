@@ -214,7 +214,16 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			}
 					
 		}else if(command.equals("/member/MemberDeleteAction_m.do")) {
-			action= new MemberDeleteAction();
+			action= new MemberDeleteAction_m();
+			try {
+				forward = action.execute(request, response);
+				System.out.println("forward 성공");
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+					
+		}else if(command.equals("/member/MemberUpdateAction_pre.do")) {
+			action= new MemberUpdateAction_pre();
 			try {
 				forward = action.execute(request, response);
 				System.out.println("forward 성공");
@@ -223,6 +232,7 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 			}
 					
 		}
+		
 		
 		/*------------------Member controller End------------------*/
 

@@ -1,14 +1,12 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="member.MemberDto"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<%
-	String id = (String)session.getAttribute("idKey");%>
-<jsp:useBean id="memberDao" class="member.MemberDao" />
-<c:set var="dto" value="<%=(MemberDto)memberDao.selectMemberById(id)%>"/>
+<%String id = (String)session.getAttribute("idKey");%>
+<c:set var="dto" value="<%=(MemberDto)request.getAttribute(\"member\")%>"/>
 
 
 <!DOCTYPE html>
@@ -17,12 +15,24 @@
 <meta content="text/html; charset=UTF-8">
 <title>회원정보수정</title>
 
-<script src="/Camp_Project/js/member_script.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+<script src="/Camp_Project/js/member_script.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link href="/Camp_Project/css/member_style.css" rel="stylesheet" type="text/css">
+
+<script>
+function resetAll(){
+	document.getElementById("m_pwd").value = '';
+	document.getElementById("m_name").value = '';
+	document.getElementById("m_email").value = '';
+	document.getElementById("m_phone").value = '';
+	document.getElementById("postcode").value = '';
+	document.getElementById("roadAddress").value = '';
+		
+}
+</script>
 
 </head>
 
@@ -34,7 +44,7 @@
 	<div class="div">
 		<br> <br>
 		<div class="inner_div2">
-			<form name="upForm">
+			<form name="upForm" id="upForm">
 				<table class="table table-striped table-hover reg_table">
 					<tr class="active">
 						<th class="th6" colspan="3"><b style="color: #FFFFFF"> ${dto.m_id}님의 회원정보 수정</b></th>
@@ -47,22 +57,22 @@
 					</tr>
 					<tr>
 						<th class="th6" style="vertical-align: middle;">패스워드 확인</th>
-						<td class="td7"><input type="password" name="m_pwd" size="15" class="form-control input-sm" ></td>
+						<td class="td7"><input type="password" name="m_pwd" id="m_pwd" size="15" class="form-control input-sm" ></td>
 						<td class="td8"></td>
 					</tr>
 					<tr>
 						<th class="th6" style="vertical-align: middle;">이름</th>
-						<td class="td7"><input type="text" name="m_name" size="15" value="${dto.m_name}"  class="form-control input-sm" ></td>
+						<td class="td7"><input type="text" name="m_name" id="m_name" size="15" value="${dto.m_name}"  class="form-control input-sm" ></td>
 						<td class="td8"></td>
 					</tr>
 					<tr>
 						<th class="th6" style="vertical-align: middle;">이메일</th>
-						<td class="td7"><input type="text" name="m_email" size="27" value="${dto.m_email}"  class="form-control input-sm" ></td>
+						<td class="td7"><input type="text" name="m_email" id="m_email" size="27" value="${dto.m_email}"  class="form-control input-sm" ></td>
 						<td class="td8"></td>
 					</tr>
 					<tr>
 						<th class="th6" style="vertical-align: middle;">전화번호</th>
-						<td class="td7"><input type="text" name="m_phone" size="20" value="${dto.m_phone}" onkeyup="javascript:editPhone(upForm)"  class="form-control input-sm" ></td>
+						<td class="td7"><input type="text" name="m_phone" id="m_phone" size="20" value="${dto.m_phone}" onkeyup="javascript:editPhone(upForm)"  class="form-control input-sm" ></td>
 						<td class="td8"></td>
 					</tr>
 					<tr>
@@ -114,7 +124,7 @@
 						<td colspan="3" class="th6">
 						 <input type="reset" value="수정 취소" onclick="history.back()" class="btn btn-default btn-sm"/>
 						 &nbsp;&nbsp;
-						 <input type="reset" value="다시쓰기" class="btn btn-default btn-sm"/>
+						 <input type="button" value="다시쓰기" onclick="javascript:resetAll()" class="btn btn-default btn-sm">
 						 &nbsp;&nbsp;
 						<input type="button" value="수정" id="btnUp" onclick="javascript:checkUpdateIn()" class="btn btn-primary btn-sm">
 						 &nbsp;&nbsp;
@@ -132,6 +142,9 @@
 	<br>
 	<br>
 <%@include file="/main/inc/main_bottom.inc" %>
+
+
+
 	
 </body>
 </html>

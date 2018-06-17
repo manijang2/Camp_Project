@@ -16,6 +16,7 @@ import admin.product.controller.ProductAllGetAction;
 import admin.product.controller.ProductDeleteAction;
 import admin.product.controller.ProductRegisterAction;
 import admin.product.controller.ProductUpdateAction;
+import board.controller.*;
 
 public class FrontController extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)
@@ -235,6 +236,20 @@ public class FrontController extends javax.servlet.http.HttpServlet implements j
 		
 		
 		/*------------------Member controller End------------------*/
+		
+		
+		/*------------------Board controller Start----------------*/
+		else if (command.equals("/BoardList.do")) {
+			action = new BoardListAction();
+			try {
+				forward = action.execute(request, response);
+				
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		/*------------------Board controller End----------------*/
 
 		//장바구니 추가
 		else if (command.equals("/cart_proc.do")) {

@@ -147,7 +147,7 @@ function searchData(p_name){
 				<li><a href="/Camp_Project/p_bestlist.do">best</a></li>
 				<li><a href="/Camp_Project/p_newlist.do">신상품</a></li>
 				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-				<li><a href="/Camp_Project/boardnoticelist.jsp">공지사항</a></li>
+				<li><a href="/Camp_Project/BoardList.do">공지사항</a></li>
 				<li><a href="/web_project/board/BoardQna.jsp">Q & A</a></li>
 				<li><a href="/web_project/board/reviewList.jsp">상품후기</a></li>
 			</ul>

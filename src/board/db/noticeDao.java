@@ -17,20 +17,14 @@ public class noticeDao {
 	ResultSet rs=null;
 	DataSource ds;
 	
-	public noticeDao() {
-		try {
-			Context init = new InitialContext();
-			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
-		}catch(Exception ex) {
-			System.out.println("Db연결 실패"+ex);
-			return;
-		}
-	}
+	
 	
 	//공지사항 글 갯수 구하기
 	public int getListCount() {
 		int x=0;
 		try {
+			Context init = new InitialContext();
+			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
 			con=ds.getConnection();
 			pstmt = con.prepareStatement("select count(*) from boardnotice");
 			rs=pstmt.executeQuery();
@@ -53,8 +47,8 @@ public class noticeDao {
 	//전체 공지사항 보기
 	public List selectDataAll(int page, int limit){
 		
-		String board_list_sql ="select rownum rnum,bn_num,bn_title,bn_id,bn_date,bn_views,bn_content from boardnotice order by bn_num desc"+
-								"where rnum>=? and rnum<=?";
+		String board_list_sql ="select bn_num,bn_title,bn_id,bn_date,bn_views,bn_content from boardnotice "+
+								"where bn_num>=? and bn_num<=? order by bn_num desc";
 		
 		List list = new ArrayList();
 		
@@ -62,6 +56,8 @@ public class noticeDao {
 		int endrow = startrow+limit-1;
 		
 		try {
+			Context init = new InitialContext();
+			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
 			con=ds.getConnection();
 			pstmt = con.prepareStatement(board_list_sql);
 			pstmt.setInt(1, startrow);
@@ -96,6 +92,8 @@ public class noticeDao {
 	public noticeDto getDetail(int num) throws Exception{
 		noticeDto notice = null;
 		try {
+			Context init = new InitialContext();
+			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
 			con=ds.getConnection();
 			pstmt = con.prepareStatement("select * from boardnotice where bn_num =?");
 			pstmt.setInt(1, num);
@@ -129,7 +127,10 @@ public class noticeDao {
 	public void setViewsUpdate (int num) throws Exception{
 		String sql = "update boardnotice set bn_views = bn+views+1 where bn_num = " + num;
 		
-		try { con=ds.getConnection();
+		try { 
+			Context init = new InitialContext();
+			DataSource ds = (DataSource)init.lookup("java:comp/env/jdbc/MariaDB");
+			con=ds.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.executeUpdate();
 		}catch(Exception ex) {
